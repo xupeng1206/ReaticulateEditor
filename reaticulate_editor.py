@@ -17,22 +17,22 @@ mock_data = {
         'lsb': '0',
         'list': [
             {
-                "no": 20,
+                "no": "20",
                 "name": "连奏",
-                "c": '#aaaaaf',
+                "c": '#aaaaaa',
                 'i':"note-eighth",
-                'g': 1,
+                'g': "1",
                 "o": [
                     {"type": "cc", "channel": '1', "args": "32,20"},
                     {"type": "note", "channel": '1', "args": "36"},
                 ]
             },
             {
-                "no": 1,
+                "no": "1",
                 "name": "断奏",
                 "c": '#ffffff',
                 'i':"note-eighth",
-                'g': 1,
+                'g': "1",
                 "o": [
                     {"type": "cc", "channel": '1', "args": "32,20"},
                     {"type": "note", "channel": '1', "args": "36"},
@@ -48,11 +48,11 @@ mock_data = {
         'lsb': '1',
         'list': [
             {
-                "no": 20,
+                "no": "20",
                 "name": "连奏",
                 "c": '#ff11aa',
                 'i': "note-eighth",
-                'g': 1,
+                'g': "1",
                 "o": [
                     {"type": "note-hold", "chancel": '1', "args": "48"},
                 ]
@@ -106,7 +106,12 @@ class ReaticulateEditor(QWidget):
         self.right_editor = self.ui_articulation_editor()
         self.grid_layout.addWidget(self.right_editor, 0, 2)
 
-        self.grid_layout.addWidget(self.ui_total_botton(), 1, 0, 1, 3)
+        spliter = QLabel()
+        spliter.setFixedHeight(1)
+        spliter.setStyleSheet('background-color: rgb(192,192,192);')
+        self.grid_layout.addWidget(spliter, 1, 0, 1, 3)
+
+        self.grid_layout.addWidget(self.ui_total_botton(), 2, 0, 1, 3)
 
     def ui_total_botton(self):
         # 总体横向布局
@@ -115,6 +120,10 @@ class ReaticulateEditor(QWidget):
         wight.adjustSize()
         editor_layout = QHBoxLayout()
         editor_layout.setContentsMargins(0, 0, 0, 0)
+
+        btn0 = QPushButton('Check Data In Memory')
+        btn0.clicked.connect(self.action_check_data_in_memory)
+        editor_layout.addWidget(btn0)
 
         btn1 = QPushButton('Reload Data From File')
         btn1.clicked.connect(self.action_reload_from_file)
@@ -141,16 +150,16 @@ class ReaticulateEditor(QWidget):
         return wight  # 返回wight
 
     def ui_bank_list(self):
-        tree = QTreeWidget()
-        tree.setColumnCount(4)
-        tree.setHeaderLabels(['Path', 'MSB', 'LSB', 'Full Name'])
-        tree.setColumnWidth(0, 200)
-        tree.setColumnWidth(1, 40)
-        tree.setColumnWidth(2, 40)
-        tree.setContentsMargins(0, 0, 0, 0)
+        self.bank_tree = QTreeWidget()
+        self.bank_tree.setColumnCount(4)
+        self.bank_tree.setHeaderLabels(['Path', 'MSB', 'LSB', 'Full Name'])
+        self.bank_tree.setColumnWidth(0, 200)
+        self.bank_tree.setColumnWidth(1, 40)
+        self.bank_tree.setColumnWidth(2, 40)
+        self.bank_tree.setContentsMargins(0, 0, 0, 0)
 
         # 添加根目录
-        root = QTreeWidgetItem(tree)
+        root = QTreeWidgetItem(self.bank_tree)
         # 设置key
         for i in range(4):
             ft = QFont()
@@ -181,8 +190,8 @@ class ReaticulateEditor(QWidget):
                     self.tree_nodes[parent_key].addChild(current_item)
                     self.tree_nodes[key] = current_item
 
-        tree.clicked.connect(self.action_bank_list_item_clicked)
-        return tree
+        self.bank_tree.clicked.connect(self.action_bank_list_item_clicked)
+        return self.bank_tree
 
     def ui_left_bottom(self):
         # 总体横向布局
@@ -254,9 +263,9 @@ class ReaticulateEditor(QWidget):
         infoWidget = self.ui_articulation_bank_info()
 
         # arts
-        listWidget = QListWidget()
-        listWidget.setGeometry(QRect(0, 0, 300, 300))
-        listWidget.setObjectName("articulation_list")
+        self.art_list_widget = QListWidget()
+        self.art_list_widget.setGeometry(QRect(0, 0, 300, 300))
+        self.art_list_widget.setObjectName("articulation_list")
 
         bank_arts = self.data[self.selected_full_name]['list'] if self.selected_full_name in self.data else []
         for index, item_data in enumerate(bank_arts):
@@ -266,12 +275,12 @@ class ReaticulateEditor(QWidget):
             item.data = item_data
             item.setSizeHint(QSize(200, 60))  # 设置QListWidgetItem大小
             widget = self.ui_articulation_item(item_data)  # 调用上面的函数获取对应
-            listWidget.addItem(item)  # 添加item
-            listWidget.setItemWidget(item, widget)  # 为item设置widget
-        listWidget.clicked.connect(self.action_articulation_item_clicked)
+            self.art_list_widget.addItem(item)  # 添加item
+            self.art_list_widget.setItemWidget(item, widget)  # 为item设置widget
+        self.art_list_widget.clicked.connect(self.action_articulation_item_clicked)
 
         layout_main.addWidget(infoWidget)  # 右边的纵向布局
-        layout_main.addWidget(listWidget)  # 右下角横向布
+        layout_main.addWidget(self.art_list_widget)  # 右下角横向布
         wight.setLayout(layout_main)  # 布局给wight
         return wight  # 返回wight
 
@@ -1013,7 +1022,7 @@ class ReaticulateEditor(QWidget):
         wight.setLayout(editor_layout)
         return wight
 
-    def action_bank_list_item_clicked(self, current_index):
+    def action_bank_list_item_clicked(self):
         item = self.sender().currentItem()
         self.selected_full_name = item.text(3)
         if self.selected_full_name:
@@ -1036,7 +1045,7 @@ class ReaticulateEditor(QWidget):
         self.grid_layout.addWidget(right_editor, 0, 2)
         self.right_editor = right_editor
 
-    def action_articulation_item_clicked(self, current_index):
+    def action_articulation_item_clicked(self):
         item = self.sender().currentItem()
         self.selected_art_index = item.index
         self.selected_art_data = item.data
@@ -1162,6 +1171,26 @@ class ReaticulateEditor(QWidget):
             'list': []
         }
         self.refresh_all()
+        self.selected_full_name = full_name
+        self.selected_art_index = None
+        self.selected_art_data = {}
+        self.clean_selected_components()
+
+        # set currentItem
+        self.bank_tree.setCurrentItem(self.tree_nodes[self.selected_full_name])
+
+        middle_list = self.ui_middle()
+        if hasattr(self, 'middle_list'):
+            self.grid_layout.removeWidget(self.middle_list)
+        self.grid_layout.addWidget(middle_list, 0, 1)
+        self.middle_list = middle_list
+
+        # reset right
+        right_editor = self.ui_articulation_editor()
+        if hasattr(self, 'right_editor'):
+            self.grid_layout.removeWidget(self.right_editor)
+        self.grid_layout.addWidget(right_editor, 0, 2)
+        self.right_editor = right_editor
 
     def action_del_selected_bank(self):
         if self.selected_full_name in self.data:
@@ -1169,17 +1198,100 @@ class ReaticulateEditor(QWidget):
             self.refresh_all()
 
     def action_new_articulation(self):
-        pass
+        if self.selected_full_name:
+            arts = self.data[self.selected_full_name]['list']
+            next_no = "127"
+            no_used = [x['no'] for x in arts]
+            for no in range(1, 128):
+                if str(no) not in no_used:
+                    next_no = str(no)
+                    break
+
+            self.data[self.selected_full_name]['list'].append(
+                {
+                    "no": next_no,
+                    "name": "New Art",
+                    "c": '#aaaaaa',
+                    'i': "note-eighth",
+                    'g': "1",
+                    "o": [
+                    ]
+                }
+            )
+            # Refresh middle and right
+            self.selected_art_index = len(self.data[self.selected_full_name]['list']) -1
+            self.selected_art_data = self.data[self.selected_full_name]['list'][self.selected_art_index]
+            self.clean_selected_components()
+
+            middle_list = self.ui_middle()
+            if hasattr(self, 'middle_list'):
+                self.grid_layout.removeWidget(self.middle_list)
+            self.grid_layout.addWidget(middle_list, 0, 1)
+            self.middle_list = middle_list
+
+            self.art_list_widget.setCurrentRow(self.selected_art_index)
+
+            right_editor = self.ui_articulation_editor(True)
+            if hasattr(self, 'right_editor'):
+                self.grid_layout.removeWidget(self.right_editor)
+            self.grid_layout.addWidget(right_editor, 0, 2)
+            self.right_editor = right_editor
 
     def action_del_selected_articulation(self):
-        pass
+        if self.selected_full_name and self.selected_art_index is not None:
+            del self.data[self.selected_full_name]['list'][self.selected_art_index]
+            # Refresh middle and right
+            self.selected_art_index = None
+            self.selected_art_data = {}
+            self.clean_selected_components()
+
+            middle_list = self.ui_middle()
+            if hasattr(self, 'middle_list'):
+                self.grid_layout.removeWidget(self.middle_list)
+            self.grid_layout.addWidget(middle_list, 0, 1)
+            self.middle_list = middle_list
+
+            right_editor = self.ui_articulation_editor(False)
+            if hasattr(self, 'right_editor'):
+                self.grid_layout.removeWidget(self.right_editor)
+            self.grid_layout.addWidget(right_editor, 0, 2)
+            self.right_editor = right_editor
+
+    def action_check_data_in_memory(self):
+        del_full_names = []
+        for full_name, bank_info in self.data.items():
+            del_art_indexes = []
+            for art_index, art_info in enumerate(bank_info['list']):
+                del_control_indexes = []
+                for control_index, control_info in enumerate(art_info['o']):
+                    # check args
+                    if control_info['type'] == "cc":
+                        if ',' in control_info['args'] and all(control_info['args'].split(',')):
+                            continue
+                        else:
+                            del_control_indexes.append(control_index)
+                    if control_info['type'] == 'note' or control_info['type'] == 'note-hole':
+                        # 控件有默认值，无需再check
+                        pass
+                art_info['o'] = [x for x_index, x in enumerate(art_info['o']) if x_index not in del_control_indexes]
+                if not all([art_info['no'], art_info['name'], art_info['o']]):
+                    del_art_indexes.append(art_index)
+            bank_info['list'] = [x for x_index, x in enumerate(bank_info['list']) if x_index not in del_art_indexes]
+            if not bank_info['list']:
+                del_full_names.append(full_name)
+
+        for del_full_name in del_full_names:
+            del self.data[del_full_name]
+
+        self.refresh_all()
 
     def action_reload_from_file(self):
         self.data = deepcopy(self.ori_data)
         self.refresh_all()
 
     def action_save_to_file(self):
-        pass
+        self.action_check_data_in_memory()
+        # save to file TODO
 
     def clean_selected_components(self):
         self.components_art_no_input = None
@@ -1191,7 +1303,7 @@ class ReaticulateEditor(QWidget):
 
     def cal_msb_lsb(self):
         msb_range = [str(x) for x in range(64, 128)]
-        lsb_range = [str(x) for x in range(0, 128)]
+        lsb_range = [str(x) for x in range(1, 128)]
         msb_lsb_used = [(bank['msb'], bank['lsb']) for bank in self.data.values()]
         for msb_lsb in itertools.product(msb_range, lsb_range):
             if msb_lsb not in msb_lsb_used:
