@@ -62,6 +62,19 @@ mock_data = {
 }
 
 
+class FileUtil:
+
+    @classmethod
+    def parse_file(cls, path):
+        file_content = ''
+        with open(path, "r") as f:
+            file_content = f.read()
+
+        if not file_content:
+            return {}
+        # TODO
+
+
 class ReaticulateEditor(QWidget):
 
     tree_nodes = {}
@@ -1337,8 +1350,12 @@ class ReaticulateEditor(QWidget):
         self.right_editor = right_editor
 
 
-if __name__ == '__main__':
+def main():
     app = QApplication(sys.argv)
     editor = ReaticulateEditor(data=mock_data)
     editor.show()
     sys.exit(app.exec_())
+
+
+if __name__ == '__main__':
+    main()
