@@ -64,7 +64,159 @@ mock_data = {
     }
 }
 
-alias_color = {
+g_icons = [
+    'accented-half',
+    'accented-quarter',
+    'acciaccatura-quarter',
+    'alt-circle',
+    'alt-gypsy',
+    'alt-gypsy-eighth',
+    'alt-gypsy-harmonics',
+    'alt-tremolo-gypsy-harmonics',
+    'alt-wave',
+    'alt-wave-double',
+    'alt-wave-double-stopped',
+    'alt-wave-double-tr',
+    'alt-x',
+    'blend',
+    'bow-down',
+    'bow-up',
+    'col-legno',
+    'col-legno-loose',
+    'col-legno-whole',
+    'con-sord',
+    'con-sord-blend',
+    'con-sord-bow-down',
+    'con-sord-bow-up',
+    'con-sord-sul-pont',
+    'con-sord-sul-pont-bow-up',
+    'cresc-f-half',
+    'cresc-half',
+    'cresc-m-half',
+    'cresc-mf-half',
+    'cresc-mp-half',
+    'cresc-p-half',
+    'cresc-quarter',
+    'crescendo',
+    'cuivre',
+    'dblstop-5th',
+    'dblstop-5th-eighth',
+    'decrescendo',
+    'esp-half',
+    'fall',
+    'fanfare',
+    'flautando',
+    'flautando-con-sord',
+    'flautando-con-sord-eighth',
+    'frozen',
+    'frozen-eighth',
+    'fx',
+    'ghost-eighth',
+    'harmonics',
+    'harmonics-natural',
+    'harmonics-natural-eighth',
+    'harp-pdlt',
+    'harp-pdlt2',
+    'legato',
+    'legato-blend-generic',
+    'legato-bowed',
+    'legato-bowed2',
+    'legato-con-sord',
+    'legato-fast',
+    'legato-flautando',
+    'legato-gliss',
+    'legato-portamento',
+    'legato-portamento-con-sord',
+    'legato-portamento-flautando',
+    'legato-runs',
+    'legato-slow',
+    'legato-slow-blend',
+    'legato-slurred',
+    'legato-sul-c',
+    'legato-sul-g',
+    'legato-sul-pont',
+    'legato-tremolo',
+    'legato-vibrato',
+    'list',
+    'marcato',
+    'marcato-half',
+    'marcato-quarter',
+    'multitongued',
+    'no-rosin',
+    'note-eighth',
+    'note-half',
+    'note-quarter',
+    'note-sixteenth',
+    'note-whole',
+    'phrase',
+    'phrase-tremolo',
+    'phrase-tremolo-cresc',
+    'pizz',
+    'pizz-b',
+    'pizz-bartok',
+    'pizz-c',
+    'pizz-con-sord',
+    'pizz-mix',
+    'pizz-sul-pont',
+    'rest-quarter',
+    'riccochet',
+    'rip',
+    'rip-downward',
+    'run-major',
+    'run-minor',
+    'sfz',
+    'spiccato',
+    'spiccato-breath',
+    'spiccato-brushed',
+    'spiccato-brushed-con-sord',
+    'spiccato-brushed-con-sord-sul-pont',
+    'spiccato-feathered',
+    'staccatissimo-stopped',
+    'staccato',
+    'staccato-breath',
+    'staccato-con-sord',
+    'staccato-dig',
+    'staccato-harmonics',
+    'staccato-harmonics-half',
+    'staccato-overblown',
+    'staccato-sfz',
+    'stopped',
+    'sul-c',
+    'sul-g',
+    'sul-pont',
+    'sul-tasto',
+    'sul-tasto-super',
+    'sul-tasto-super-eighth',
+    'tenuto-eighth',
+    'tenuto-half',
+    'tenuto-quarter',
+    'tremolo',
+    'tremolo-150',
+    'tremolo-150-con-sord',
+    'tremolo-180',
+    'tremolo-180-con-sord',
+    'tremolo-con-sord',
+    'tremolo-con-sord-sul-pont',
+    'tremolo-ghost',
+    'tremolo-harmonics',
+    'tremolo-harmonics-a',
+    'tremolo-harmonics-b',
+    'tremolo-measured',
+    'tremolo-slurred',
+    'tremolo-sul-pont',
+    'trill',
+    'trill-maj2',
+    'trill-maj3',
+    'trill-min2',
+    'trill-min3',
+    'trill-perf4',
+    'vibrato',
+    'vibrato-con-sord',
+    'vibrato-molto',
+    'vibrato-rachmaninoff',
+]
+
+g_text_color = {
     "default": '#666666',
     'short': '#6c30c6',
     'short-light': "#9630c6",
@@ -79,28 +231,21 @@ alias_color = {
     'fx': '#883333',
 }
 
-color_alias = {
-    '#666666': "default",
-    '#6c30c6': 'short',
-    "#9630c6": 'short-light',
-    '#533bca': 'short-dark',
-    '#218561': 'legato',
-    '#1c5e46': 'legato-dark',
-    '#49ba91': 'legato-light',
-    '#305fc6': 'long',
-    '#4474e1': 'long-light',
-    '#2c4b94': 'long-dark',
-    '#9909bd': 'textured',
-    '#883333': 'fx',
-}
+g_color_text = dict(zip(g_text_color.values(), g_text_color.keys()))
 
-alias_note = {
 
-}
+g_note_num = {}
+num_group = -1
+num_start = 0
+while num_start < 128:
+    for note in ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']:
+        g_note_num[f'{note}{str(num_group)}'] = str(num_start)
+        num_start += 1
+    num_group += 1
 
-note_alias = {
 
-}
+g_num_note = dict(zip(g_note_num.values(), g_note_num.keys()))
+
 
 class FileUtil:
 
@@ -711,157 +856,7 @@ class ReaticulateEditor(QWidget):
         editor_layout.addWidget(laber_icon)
 
         self.components_art_icon_input = QComboBox()
-        icons = [
-            'accented-half',
-            'accented-quarter',
-            'acciaccatura-quarter',
-            'alt-circle',
-            'alt-gypsy',
-            'alt-gypsy-eighth',
-            'alt-gypsy-harmonics',
-            'alt-tremolo-gypsy-harmonics',
-            'alt-wave',
-            'alt-wave-double',
-            'alt-wave-double-stopped',
-            'alt-wave-double-tr',
-            'alt-x',
-            'blend',
-            'bow-down',
-            'bow-up',
-            'col-legno',
-            'col-legno-loose',
-            'col-legno-whole',
-            'con-sord',
-            'con-sord-blend',
-            'con-sord-bow-down',
-            'con-sord-bow-up',
-            'con-sord-sul-pont',
-            'con-sord-sul-pont-bow-up',
-            'cresc-f-half',
-            'cresc-half',
-            'cresc-m-half',
-            'cresc-mf-half',
-            'cresc-mp-half',
-            'cresc-p-half',
-            'cresc-quarter',
-            'crescendo',
-            'cuivre',
-            'dblstop-5th',
-            'dblstop-5th-eighth',
-            'decrescendo',
-            'esp-half',
-            'fall',
-            'fanfare',
-            'flautando',
-            'flautando-con-sord',
-            'flautando-con-sord-eighth',
-            'frozen',
-            'frozen-eighth',
-            'fx',
-            'ghost-eighth',
-            'harmonics',
-            'harmonics-natural',
-            'harmonics-natural-eighth',
-            'harp-pdlt',
-            'harp-pdlt2',
-            'legato',
-            'legato-blend-generic',
-            'legato-bowed',
-            'legato-bowed2',
-            'legato-con-sord',
-            'legato-fast',
-            'legato-flautando',
-            'legato-gliss',
-            'legato-portamento',
-            'legato-portamento-con-sord',
-            'legato-portamento-flautando',
-            'legato-runs',
-            'legato-slow',
-            'legato-slow-blend',
-            'legato-slurred',
-            'legato-sul-c',
-            'legato-sul-g',
-            'legato-sul-pont',
-            'legato-tremolo',
-            'legato-vibrato',
-            'list',
-            'marcato',
-            'marcato-half',
-            'marcato-quarter',
-            'multitongued',
-            'no-rosin',
-            'note-eighth',
-            'note-half',
-            'note-quarter',
-            'note-sixteenth',
-            'note-whole',
-            'phrase',
-            'phrase-tremolo',
-            'phrase-tremolo-cresc',
-            'pizz',
-            'pizz-b',
-            'pizz-bartok',
-            'pizz-c',
-            'pizz-con-sord',
-            'pizz-mix',
-            'pizz-sul-pont',
-            'rest-quarter',
-            'riccochet',
-            'rip',
-            'rip-downward',
-            'run-major',
-            'run-minor',
-            'sfz',
-            'spiccato',
-            'spiccato-breath',
-            'spiccato-brushed',
-            'spiccato-brushed-con-sord',
-            'spiccato-brushed-con-sord-sul-pont',
-            'spiccato-feathered',
-            'staccatissimo-stopped',
-            'staccato',
-            'staccato-breath',
-            'staccato-con-sord',
-            'staccato-dig',
-            'staccato-harmonics',
-            'staccato-harmonics-half',
-            'staccato-overblown',
-            'staccato-sfz',
-            'stopped',
-            'sul-c',
-            'sul-g',
-            'sul-pont',
-            'sul-tasto',
-            'sul-tasto-super',
-            'sul-tasto-super-eighth',
-            'tenuto-eighth',
-            'tenuto-half',
-            'tenuto-quarter',
-            'tremolo',
-            'tremolo-150',
-            'tremolo-150-con-sord',
-            'tremolo-180',
-            'tremolo-180-con-sord',
-            'tremolo-con-sord',
-            'tremolo-con-sord-sul-pont',
-            'tremolo-ghost',
-            'tremolo-harmonics',
-            'tremolo-harmonics-a',
-            'tremolo-harmonics-b',
-            'tremolo-measured',
-            'tremolo-slurred',
-            'tremolo-sul-pont',
-            'trill',
-            'trill-maj2',
-            'trill-maj3',
-            'trill-min2',
-            'trill-min3',
-            'trill-perf4',
-            'vibrato',
-            'vibrato-con-sord',
-            'vibrato-molto',
-            'vibrato-rachmaninoff',
-        ]
+        icons = g_icons
         self.components_art_icon_input.addItems(icons)
         if icon_val is not None:
             self.components_art_icon_input.setCurrentIndex(icons.index(icon_val) if icon_val in icons else 78)
@@ -876,8 +871,11 @@ class ReaticulateEditor(QWidget):
 
         color = self.selected_art_data.get('c', "#928179")
 
-        if color in alias_color:
-            color = alias_color[color]
+        if color in g_text_color:
+            color_laber = color
+            color = g_text_color[color]
+        else:
+            color_laber = color
 
         if color:
             if color[0] != '#':
@@ -908,7 +906,7 @@ class ReaticulateEditor(QWidget):
 
         dlg_color = QPushButton('select color')
         dlg_color.clicked.connect(self.action_choose_color)
-        self.components_art_color_label = QLabel(color)
+        self.components_art_color_label = QLabel(color_laber)
         self.components_art_color_label.setAlignment(Qt.AlignCenter)
         self.components_art_color_label.setStyleSheet(f'background-color: {color};')
         editor_layout.addWidget(dlg_color)
@@ -971,7 +969,7 @@ class ReaticulateEditor(QWidget):
         ch = data.get('channel', 'all')
         cc = data.get('args', "1,0")
         if ',' not in cc:
-            cc = "1,0"
+            cc = "1,127"
         cc_no = cc.split(',')[0]
         cc_val = cc.split(',')[1]
 
@@ -993,9 +991,9 @@ class ReaticulateEditor(QWidget):
         editor_layout.addWidget(laber_cc)
 
         comb_cc = QComboBox()
-        cc_nos = [str(x) for x in range(1, 128)]
+        cc_nos = [str(x) for x in range(0, 128)]
         comb_cc.addItems(cc_nos)
-        comb_cc.setCurrentIndex(cc_nos.index(cc_no) if cc_no in cc_nos else 0)
+        comb_cc.setCurrentIndex(cc_nos.index(cc_no) if cc_no in cc_nos else 1)
         editor_layout.addWidget(comb_cc)
 
         laber_out = QLabel()
@@ -1052,7 +1050,13 @@ class ReaticulateEditor(QWidget):
     def ui_art_note_control(self, data):
 
         ch = data.get('channel', 'all')
-        note_val = data.get('args', "1")
+        note = data.get('args', "1,127")
+        if ',' in note:
+            note_num = note.split(',')[0]
+            note_val = note.split(',')[1]
+        else:
+            note_num = note.strip()
+            note_val = '127'
 
         # 总体横向布局
         wight = QWidget()
@@ -1071,11 +1075,28 @@ class ReaticulateEditor(QWidget):
         laber_note.adjustSize()
         editor_layout.addWidget(laber_note)
 
+        current_note = g_num_note[note_num]
         comb_note = QComboBox()
-        notes = [str(x) for x in range(1, 128)]
+        notes = list(g_note_num.keys())
         comb_note.addItems(notes)
-        comb_note.setCurrentIndex(notes.index(note_val) if note_val in notes else 0)
+        comb_note.setCurrentIndex(notes.index(current_note) if current_note in notes else 'C-1')
         editor_layout.addWidget(comb_note)
+
+
+        laber_out = QLabel()
+        ft = QFont()
+        ft.setPointSize(17)
+        laber_out.setFont(ft)
+        laber_out.setText("Vel:")
+        laber_out.setFixedWidth(30)
+        laber_out.setScaledContents(True)
+        laber_out.setAlignment(Qt.AlignVCenter)
+        laber_out.adjustSize()
+        editor_layout.addWidget(laber_out)
+
+        note_vel_out = QLineEdit()
+        note_vel_out.setText(note_val)
+        editor_layout.addWidget(note_vel_out)
 
         laber_ch = QLabel()
         ft = QFont()
@@ -1107,6 +1128,7 @@ class ReaticulateEditor(QWidget):
         self.components_art_control_list.append({
             'type': 'note',
             'note': comb_note,
+            'vel': note_vel_out,
             'ch': comb_ch,
         })
 
@@ -1115,7 +1137,13 @@ class ReaticulateEditor(QWidget):
     def ui_art_note_hold_control(self, data):
 
         ch = data.get('channel', 'all')
-        note_val = data.get('args', "1")
+        note = data.get('args', "1,127")
+        if ',' in note:
+            note_num = note.split(',')[0]
+            note_val = note.split(',')[1]
+        else:
+            note_num = note.strip()
+            note_val = '127'
 
         wight = QWidget()
         wight.adjustSize()
@@ -1133,11 +1161,27 @@ class ReaticulateEditor(QWidget):
         laber_note.adjustSize()
         editor_layout.addWidget(laber_note)
 
+        current_note = g_num_note[note_num]
         comb_note = QComboBox()
-        notes = [str(x) for x in range(1, 128)]
+        notes = list(g_note_num.keys())
         comb_note.addItems(notes)
-        comb_note.setCurrentIndex(notes.index(note_val) if note_val in notes else 0)
+        comb_note.setCurrentIndex(notes.index(current_note) if current_note in notes else 'C-1')
         editor_layout.addWidget(comb_note)
+
+        laber_out = QLabel()
+        ft = QFont()
+        ft.setPointSize(17)
+        laber_out.setFont(ft)
+        laber_out.setText("Vel:")
+        laber_out.setFixedWidth(30)
+        laber_out.setScaledContents(True)
+        laber_out.setAlignment(Qt.AlignVCenter)
+        laber_out.adjustSize()
+        editor_layout.addWidget(laber_out)
+
+        note_vel_out = QLineEdit()
+        note_vel_out.setText(note_val)
+        editor_layout.addWidget(note_vel_out)
 
         laber_ch = QLabel()
         ft = QFont()
@@ -1169,6 +1213,7 @@ class ReaticulateEditor(QWidget):
         self.components_art_control_list.append({
             'type': 'note-hold',
             'note': comb_note,
+            'vel': note_vel_out,
             'ch': comb_ch,
         })
 
@@ -1289,13 +1334,17 @@ class ReaticulateEditor(QWidget):
                     control["channel"] = ch
             elif control_type == "note":
                 control['type'] = 'note'
-                control['args'] = f"{item['note'].currentText()}"
+                note = g_note_num[item['note'].currentText()]
+                vel = item['vel'].text()
+                control['args'] = f"{note},{vel}"
                 ch = item['ch'].currentText()
                 if ch != "all":
                     control["channel"] = ch
             elif control_type == "note-hold":
                 control['type'] = 'note-hold'
-                control['args'] = f"{item['note'].currentText()}"
+                note = g_note_num[item['note'].currentText()]
+                vel = item['vel'].text()
+                control['args'] = f"{note},{vel}"
                 ch = item['ch'].currentText()
                 if ch != "all":
                     control["channel"] = ch
@@ -1514,8 +1563,6 @@ def main():
     app = QApplication(sys.argv)
     # editor = ReaticulateEditor(data=mock_data)
     data = FileUtil.parse_file('./Reaticulate.reabank')
-    import pprint
-    pprint.pprint(data)
     editor = ReaticulateEditor(data=data)
     editor.show()
     sys.exit(app.exec_())
