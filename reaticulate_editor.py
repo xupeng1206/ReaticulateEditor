@@ -1,5 +1,6 @@
 import sys
 import os
+import re
 import itertools
 from copy import deepcopy
 from PyQt5.QtWidgets import *
@@ -13,6 +14,8 @@ mock_data = {
     'kontakt/lass/volin1': {
         'g': 'kontakt/lass',
         'n':  'volin1',
+        'm': 'msg',
+        'bank_name': 'volin1',
         'msb': '64',
         'lsb': '0',
         'list': [
@@ -61,8 +64,47 @@ mock_data = {
     }
 }
 
+alias_color = {
+    "default": '#666666',
+    'short': '#6c30c6',
+    'short-light': "#9630c6",
+    'short-dark': '#533bca',
+    'legato': '#218561',
+    'legato-dark': '#1c5e46',
+    'legato-light': '#49ba91',
+    'long': '#305fc6',
+    'long-light': '#4474e1',
+    'long-dark': '#2c4b94',
+    'textured': '#9909bd',
+    'fx': '#883333',
+}
+
+color_alias = {
+    '#666666': "default",
+    '#6c30c6': 'short',
+    "#9630c6": 'short-light',
+    '#533bca': 'short-dark',
+    '#218561': 'legato',
+    '#1c5e46': 'legato-dark',
+    '#49ba91': 'legato-light',
+    '#305fc6': 'long',
+    '#4474e1': 'long-light',
+    '#2c4b94': 'long-dark',
+    '#9909bd': 'textured',
+    '#883333': 'fx',
+}
+
+alias_note = {
+
+}
+
+note_alias = {
+
+}
 
 class FileUtil:
+
+    bank_split = "//----------------------------------------------------------------------------"
 
     @classmethod
     def parse_file(cls, path):
@@ -72,7 +114,119 @@ class FileUtil:
 
         if not file_content:
             return {}
-        # TODO
+
+        ret = {}
+        banks = file_content.split(cls.bank_split)[1:] if cls.bank_split in file_content else []
+        for bank in banks:
+            lines = bank.split('\n')
+            lines = [x.strip() for x in lines if x.strip() != '']
+            lines = [x.strip('\n') for x in lines if x.strip() != '']
+            bank_line_found = False
+            bank_info = {}
+            full_name = ''
+            for line in lines:
+                if bank_line_found:
+                    # process art info
+                    if line.startswith('//!'):
+                        line = line[3:].strip()
+                        art_info = {}
+                        k_vs = line.split(' ')
+                        k_vs = [x.strip() for x in k_vs if x != '']
+                        for k_v in k_vs:
+                            if k_v.startswith("c="):
+                                art_info['c'] = k_v.split('c=')[-1].strip()
+                            if k_v.startswith("i="):
+                                art_info['i'] = k_v.split('i=')[-1].strip()
+                            if k_v.startswith("g="):
+                                art_info['g'] = k_v.split('g=')[-1].strip()
+                            if k_v.startswith("o="):
+                                art_info['o'] = []
+                                o_vals = k_v.split('o=')[-1].strip()
+                                controls = o_vals.split('/')
+                                controls = [x.strip() for x in controls if x != '']
+                                for control in controls:
+                                    control_k_v = control.split(':')
+                                    control_prefix = control_k_v[0]
+                                    ch = ''
+                                    if '@' in control_prefix:
+                                        control_type = control_prefix.split('@')[0]
+                                        ch = control_prefix.split('@')[1]
+                                    else:
+                                        control_type = control_prefix
+                                    control_args = control_k_v[1]
+                                    control_info = {}
+                                    control_info['type'] = control_type
+                                    if ch:
+                                        control_info['chancel'] = ch
+                                    control_info['args'] = control_args
+                                    art_info['o'].append(control_info)
+                        bank_info['list'].append(art_info)
+                    else:
+                        art_no = line.split(' ')[0]
+                        art_name = line[len(art_no):].strip()
+                        bank_info['list'][-1]['no'] = art_no
+                        bank_info['list'][-1]['name'] = art_name
+                else:
+                    if line.startswith('//!'):
+                        line = line[3:].strip()
+                        bank_g = cls.find_bank_g(line)
+                        if bank_g:
+                            bank_info['g'] = bank_g
+                        bank_m = cls.find_bank_m(line)
+                        if bank_g:
+                            bank_info['m'] = bank_m
+                        bank_n = cls.find_bank_n(line)
+                        if bank_n:
+                            bank_info['n'] = bank_n
+                    elif line.startswith("Bank"):
+                        patterns = line.split(' ')
+                        patterns = [x.strip() for x in patterns if x != '']
+                        msb = patterns[1]
+                        lsb = patterns[2]
+                        new_line_str = ' '.join(patterns)
+                        new_line_prefix = ' '.join(['Bank', str(msb), str(lsb)])
+                        bank_name = new_line_str[len(new_line_prefix):].strip()
+                        bank_info['msb'] = str(msb)
+                        bank_info['lsb'] = str(lsb)
+                        bank_info['bank_name'] = bank_name
+                        if 'n' not in bank_info:
+                            bank_info['n'] = bank_name
+                        bank_info['list'] = []
+                        full_name = f'{bank_info["g"]}/{bank_info["n"]}'
+                        bank_line_found = True
+                    else:
+                        print('error format, not support!!!')
+            if full_name:
+                ret[full_name] = bank_info
+
+        return ret
+
+    @classmethod
+    def find_bank_g(cls, line):
+        pattern = re.compile(r'g="(.*?)"')
+        rets = pattern.findall(line)
+        if rets:
+            return rets[0].strip()
+        else:
+            return ''
+
+    @classmethod
+    def find_bank_n(cls, line):
+        pattern = re.compile(r'n="(.*?)"')
+        rets = pattern.findall(line)
+        if rets:
+            return rets[0].strip()
+        else:
+            return ''
+
+    @classmethod
+    def find_bank_m(cls, line):
+        pattern = re.compile(r'm="(.*?)"')
+        rets = pattern.findall(line)
+        if rets:
+            return rets[0].strip()
+        else:
+            return ''
 
 
 class ReaticulateEditor(QWidget):
@@ -338,7 +492,7 @@ class ReaticulateEditor(QWidget):
         name = QLabel(data['name'])
         name.setAlignment(Qt.AlignVCenter)
 
-        group = QLabel(f"[{data['g']}]")
+        group = QLabel(f"[{data['g']}]" if 'g' in data else '1')
         group.setFixedWidth(18)
         group.setAlignment(Qt.AlignVCenter)
 
@@ -721,6 +875,10 @@ class ReaticulateEditor(QWidget):
     def ui_art_color_detail(self):
 
         color = self.selected_art_data.get('c', "#928179")
+
+        if color in alias_color:
+            color = alias_color[color]
+
         if color:
             if color[0] != '#':
                 color = "#928179"
@@ -1179,6 +1337,8 @@ class ReaticulateEditor(QWidget):
         self.data[full_name] = {
             'g': g,
             'n':  n,
+            'm': '',
+            'bank_name': n,
             'msb': next_msb,
             'lsb': next_lsb,
             'list': []
@@ -1352,7 +1512,11 @@ class ReaticulateEditor(QWidget):
 
 def main():
     app = QApplication(sys.argv)
-    editor = ReaticulateEditor(data=mock_data)
+    # editor = ReaticulateEditor(data=mock_data)
+    data = FileUtil.parse_file('./Reaticulate.reabank')
+    import pprint
+    pprint.pprint(data)
+    editor = ReaticulateEditor(data=data)
     editor.show()
     sys.exit(app.exec_())
 
