@@ -6,63 +6,10 @@ from copy import deepcopy
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
+import datetime
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-
-mock_data = {
-    'kontakt/lass/volin1': {
-        'g': 'kontakt/lass',
-        'n':  'volin1',
-        'm': 'msg',
-        'bank_name': 'volin1',
-        'msb': '64',
-        'lsb': '0',
-        'list': [
-            {
-                "no": "20",
-                "name": "连奏",
-                "c": '#aaaaaa',
-                'i':"note-eighth",
-                'g': "1",
-                "o": [
-                    {"type": "cc", "channel": '1', "args": "32,20"},
-                    {"type": "note", "channel": '1', "args": "36"},
-                ]
-            },
-            {
-                "no": "1",
-                "name": "断奏",
-                "c": '#ffffff',
-                'i':"note-eighth",
-                'g': "1",
-                "o": [
-                    {"type": "cc", "channel": '1', "args": "32,20"},
-                    {"type": "note", "channel": '1', "args": "36"},
-                    {"type": "note-hold", "channel": '1', "args": "48"},
-                ]
-            },
-        ]
-    },
-    'kontakt/lass/volin2': {
-        'g': 'kontakt/lass',
-        'n':  'volin2',
-        'msb': '64',
-        'lsb': '1',
-        'list': [
-            {
-                "no": "20",
-                "name": "连奏",
-                "c": '#ff11aa',
-                'i': "note-eighth",
-                'g': "1",
-                "o": [
-                    {"type": "note-hold", "chancel": '1', "args": "48"},
-                ]
-            },
-        ]
-    }
-}
 
 g_icons = [
     'accented-half',
@@ -249,10 +196,12 @@ g_num_note = dict(zip(g_note_num.values(), g_note_num.keys()))
 
 class FileUtil:
 
+    path = ''
     bank_split = "//----------------------------------------------------------------------------"
 
     @classmethod
     def parse_file(cls, path):
+        cls.path = path
         file_content = ''
         with open(path, "r") as f:
             file_content = f.read()
@@ -318,7 +267,7 @@ class FileUtil:
                         if bank_g:
                             bank_info['g'] = bank_g
                         bank_m = cls.find_bank_m(line)
-                        if bank_g:
+                        if bank_m:
                             bank_info['m'] = bank_m
                         bank_n = cls.find_bank_n(line)
                         if bank_n:
@@ -345,6 +294,47 @@ class FileUtil:
                 ret[full_name] = bank_info
 
         return ret
+
+    @classmethod
+    def save_file(cls, data):
+        os.rename(cls.path, f'{cls.path}_{datetime.datetime.now().strftime("%Y%m%d%H%M%S")}')
+        with open(cls.path, "w") as f:
+            for full_name, vals in data.items():
+                f.write(cls.bank_split + '\n')  # 分割线
+                g = vals.get('g', '')
+                n = vals.get('n', '')
+                m = vals.get('m', '')
+                msb = vals['msb']
+                lsb = vals['lsb']
+                bank_name = vals.get('bank_name', '')
+                f.write(f'//! g="{g}" n="{n}"\n')
+                f.write(f'//! m="{m}"\n')
+                f.write(f'Bank {msb} {lsb} {bank_name if bank_name else n}\n')
+                f.write('\n')
+                for art in vals['list']:
+                    art_no = art['no']
+                    art_name = art['name']
+                    art_c = art['c']
+                    art_i = art['i']
+                    art_g = art.get('g', '1')
+                    art_o = art['o']
+
+                    action_texts = []
+                    for action in art_o:
+                        if 'channel' in action:
+                            action_text = f'{action["type"] if "type" in action else ""}@{action["channel"]}:{action["args"] if "args" in action else ""}'
+                        else:
+                            action_text = f'{action["type"] if "type" in action else ""}:{action["args"] if "args" in action else ""}'
+                            if action_text == ":":
+                                continue
+                        action_texts.append(action_text)
+                    actions_text = "o=" + '/'.join(action_texts)
+
+                    f.write(f'//! c={art_c} i={art_i} g={art_g} {actions_text}\n')
+                    f.write(f'{art_no} {art_name}\n')
+
+                f.write('\n')
+
 
     @classmethod
     def find_bank_g(cls, line):
@@ -967,7 +957,7 @@ class ReaticulateEditor(QWidget):
 
     def ui_art_cc_control(self, data):
         ch = data.get('channel', 'all')
-        cc = data.get('args', "1,0")
+        cc = data.get('args', "1,127")
         if ',' not in cc:
             cc = "1,127"
         cc_no = cc.split(',')[0]
@@ -1513,6 +1503,7 @@ class ReaticulateEditor(QWidget):
 
     def action_save_to_file(self):
         self.action_check_data_in_memory()
+        FileUtil.save_file(self.data)
         # save to file TODO
 
     def clean_selected_components(self):
@@ -1561,7 +1552,6 @@ class ReaticulateEditor(QWidget):
 
 def main():
     app = QApplication(sys.argv)
-    # editor = ReaticulateEditor(data=mock_data)
     data = FileUtil.parse_file('./Reaticulate.reabank')
     editor = ReaticulateEditor(data=data)
     editor.show()
