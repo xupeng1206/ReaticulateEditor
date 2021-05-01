@@ -1,15 +1,26 @@
+"""
+Audio         xupeng
+Eamil         874582705@qq.com / 15601598009@163.com
+github        https://github.com/xupeng1206
+
+"""
 import sys
 import os
 import re
 import itertools
+from pathlib import Path
 from copy import deepcopy
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 import datetime
 
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
+reaper_resource_path = sys.argv[1]
+
+reabank_file_path = os.path.join(reaper_resource_path, "Data", "Reaticulate.reabank")
+folder_icon_path = os.path.join(reaper_resource_path, "Scripts", "ReaticulateEditor", "icons", "folder.jpeg")
+item_icon_path = os.path.join(reaper_resource_path, "Scripts", "ReaticulateEditor", "icons", "item.jpeg")
 
 g_icons = [
     'accented-half',
@@ -220,7 +231,7 @@ class FileUtil:
             full_name = ''
             for line in lines:
                 if bank_line_found:
-                    # process art info
+
                     if line.startswith('//!'):
                         line = line[3:].strip()
                         art_info = {}
@@ -300,7 +311,7 @@ class FileUtil:
         os.rename(cls.path, f'{cls.path}_{datetime.datetime.now().strftime("%Y%m%d%H%M%S")}')
         with open(cls.path, "w") as f:
             for full_name, vals in data.items():
-                f.write(cls.bank_split + '\n')  # 分割线
+                f.write(cls.bank_split + '\n')
                 g = vals.get('g', '')
                 n = vals.get('n', '')
                 m = vals.get('m', '')
@@ -416,7 +427,6 @@ class ReaticulateEditor(QWidget):
         self.grid_layout.addWidget(self.ui_total_botton(), 2, 0, 1, 3)
 
     def ui_total_botton(self):
-        # 总体横向布局
         wight = QWidget()
         wight.setContentsMargins(0, 0, 0, 0)
         wight.adjustSize()
@@ -439,17 +449,15 @@ class ReaticulateEditor(QWidget):
         return wight
 
     def ui_left(self):
-        # 总Widget
         wight = QWidget()
         wight.setContentsMargins(0, 0, 0, 0)
-        # 总体横向布局
         layout_main = QVBoxLayout()
         layout_main.setContentsMargins(0, 0, 0, 0)
 
-        layout_main.addWidget(self.ui_bank_list())  # 右边的纵向布局
-        layout_main.addWidget(self.ui_left_bottom())  # 右下角横向布
-        wight.setLayout(layout_main)  # 布局给wight
-        return wight  # 返回wight
+        layout_main.addWidget(self.ui_bank_list())
+        layout_main.addWidget(self.ui_left_bottom())
+        wight.setLayout(layout_main)
+        return wight
 
     def ui_bank_list(self):
         self.bank_tree = QTreeWidget()
@@ -460,15 +468,13 @@ class ReaticulateEditor(QWidget):
         self.bank_tree.setColumnWidth(2, 40)
         self.bank_tree.setContentsMargins(0, 0, 0, 0)
 
-        # 添加根目录
         root = QTreeWidgetItem(self.bank_tree)
-        # 设置key
         for i in range(4):
             ft = QFont()
-            ft.setPointSize(16)
+            ft.setPointSize(10)
             root.setFont(i, ft)
         root.setText(0, 'Librarys')
-        root.setIcon(0, QIcon('icons/tree/folder.jpeg'))
+        root.setIcon(0, QIcon(folder_icon_path))
         self.tree_nodes[''] = root
 
         for line in self.data.keys():
@@ -480,15 +486,15 @@ class ReaticulateEditor(QWidget):
                     current_item = QTreeWidgetItem()
                     for i in range(4):
                         ft = QFont()
-                        ft.setPointSize(16)
+                        ft.setPointSize(10)
                         current_item.setFont(i, ft)
                     current_item.setText(0, names[index])
-                    current_item.setIcon(0, QIcon('icons/tree/folder.jpeg'))
+                    current_item.setIcon(0, QIcon(folder_icon_path))
                     if index == len(names) - 1:
                         current_item.setText(1, self.data[line]['msb'])
                         current_item.setText(2, self.data[line]['lsb'])
                         current_item.setText(3, key)
-                        current_item.setIcon(0, QIcon('icons/tree/item.jpeg'))
+                        current_item.setIcon(0, QIcon(item_icon_path))
                     self.tree_nodes[parent_key].addChild(current_item)
                     self.tree_nodes[key] = current_item
 
@@ -496,11 +502,9 @@ class ReaticulateEditor(QWidget):
         return self.bank_tree
 
     def ui_left_bottom(self):
-        # 总体横向布局
         wight = QWidget()
         wight.setContentsMargins(0, 0, 0, 0)
         wight.adjustSize()
-        # 总体横向布局
         layout_main = QVBoxLayout()
         layout_main.setContentsMargins(0, 0, 0, 0)
 
@@ -509,10 +513,10 @@ class ReaticulateEditor(QWidget):
 
         laber = QLabel()
         ft = QFont()
-        ft.setPointSize(13)
+        ft.setPointSize(10)
         laber.setFont(ft)
         laber.setText("Full Name:")
-        laber.setFixedWidth(63)
+        laber.setFixedWidth(70)
         laber.setScaledContents(True)
         laber.setAlignment(Qt.AlignVCenter)
         laber.adjustSize()
@@ -523,7 +527,7 @@ class ReaticulateEditor(QWidget):
 
         layout_main.addLayout(editor_up)
 
-        # buttons
+
         editor_down = QHBoxLayout()
         editor_down.setContentsMargins(0, 0, 0, 0)
 
@@ -540,83 +544,72 @@ class ReaticulateEditor(QWidget):
         return wight
 
     def ui_middle(self):
-        # 总Widget
         wight = QWidget()
         wight.setContentsMargins(0, 0, 0, 0)
-        # 总体横向布局
         layout_main = QVBoxLayout()
         layout_main.setContentsMargins(0, 0, 0, 0)
 
-        layout_main.addWidget(self.ui_articulation_list())  # 右边的纵向布局
-        layout_main.addWidget(self.ui_middle_bottom())  # 右下角横向布
-        wight.setLayout(layout_main)  # 布局给wight
-        return wight  # 返回wight
+        layout_main.addWidget(self.ui_articulation_list())
+        layout_main.addWidget(self.ui_middle_bottom())
+        wight.setLayout(layout_main)
+        return wight
 
     def ui_articulation_list(self):
-
-        # 总Widget
         wight = QWidget()
         wight.setContentsMargins(0, 0, 0, 0)
-        # 总体横向布局
         layout_main = QVBoxLayout()
         layout_main.setContentsMargins(0, 0, 0, 0)
 
-        # 简介
         infoWidget = self.ui_articulation_bank_info()
 
-        # arts
         self.art_list_widget = QListWidget()
         self.art_list_widget.setGeometry(QRect(0, 0, 300, 300))
         self.art_list_widget.setObjectName("articulation_list")
 
         bank_arts = self.data[self.selected_full_name]['list'] if self.selected_full_name in self.data else []
         for index, item_data in enumerate(bank_arts):
-            item = QListWidgetItem()  # 创建QListWidgetItem对象
+            item = QListWidgetItem()
             item.index = index
             item.bank_full_name = self.selected_full_name
             item.data = item_data
-            item.setSizeHint(QSize(200, 60))  # 设置QListWidgetItem大小
-            widget = self.ui_articulation_item(item_data)  # 调用上面的函数获取对应
-            self.art_list_widget.addItem(item)  # 添加item
-            self.art_list_widget.setItemWidget(item, widget)  # 为item设置widget
+            item.setSizeHint(QSize(200, 60))
+            widget = self.ui_articulation_item(item_data)
+            self.art_list_widget.addItem(item)
+            self.art_list_widget.setItemWidget(item, widget)
         self.art_list_widget.clicked.connect(self.action_articulation_item_clicked)
 
-        layout_main.addWidget(infoWidget)  # 右边的纵向布局
-        layout_main.addWidget(self.art_list_widget)  # 右下角横向布
-        wight.setLayout(layout_main)  # 布局给wight
-        return wight  # 返回wight
+        layout_main.addWidget(infoWidget)
+        layout_main.addWidget(self.art_list_widget)
+        wight.setLayout(layout_main)
+        return wight
 
     def ui_articulation_bank_info(self):
-        # 总Widget
         wight = QWidget()
-        # 总体横向布局
         layout_main = QVBoxLayout()
         layout_main.setContentsMargins(10, 2, 10, 2)
         text = f"Full Name:  /{self.selected_full_name}" if self.selected_full_name else "Full Name:"
         laber = QLabel(text)
         ft = QFont()
-        ft.setPointSize(15)
+        ft.setPointSize(10)
         laber.setFont(ft)
         layout_main.addWidget(laber)
 
-        wight.setLayout(layout_main)  # 布局给wight
-        return wight  # 返回wight
+        wight.setLayout(layout_main)
+        return wight
 
     def ui_articulation_item(self, data):
-        # 总Widget
+
         wight = QWidget()
-        # 总体横向布局
+
         layout_main = QHBoxLayout()
 
-        map_l = QLabel()  # Icon显示
+        map_l = QLabel()
         map_l.setFixedSize(40, 40)
-        maps = QPixmap('icons/tree/item.jpeg').scaled(40, 40)
+        maps = QPixmap(item_icon_path).scaled(40, 40)
         map_l.setPixmap(maps)
 
-        # 按照从左到右, 从上到下布局添加
-        layout_main.addWidget(map_l)  # 最左边的头像
+        layout_main.addWidget(map_l)
 
-        # 右边的纵向布局
         layout_right = QVBoxLayout()
 
         no_and_name_layout = QHBoxLayout()
@@ -648,15 +641,15 @@ class ReaticulateEditor(QWidget):
         actions_text = "o=" + '/'.join(action_texts)
 
         right_down = QLabel(actions_text)
-        layout_right.addLayout(no_and_name_layout)  # 右边的纵向布局
-        layout_right.addWidget(right_down)  # 右下角横向布局
+        layout_right.addLayout(no_and_name_layout)
+        layout_right.addWidget(right_down)
 
-        layout_main.addLayout(layout_right)  # 右边的布局
-        wight.setLayout(layout_main)  # 布局给wight
-        return wight  # 返回wight
+        layout_main.addLayout(layout_right)
+        wight.setLayout(layout_main)
+        return wight
 
     def ui_middle_bottom(self):
-        # 总体横向布局
+
         wight = QWidget()
         wight.adjustSize()
         editor_layout = QHBoxLayout()
@@ -674,7 +667,7 @@ class ReaticulateEditor(QWidget):
         return wight
 
     def ui_articulation_editor(self, enable=False):
-        # 总Widget
+
         wight = QWidget()
         wight.setContentsMargins(0, 0, 0, 0)
 
@@ -684,56 +677,48 @@ class ReaticulateEditor(QWidget):
         self.r_listWidget = QListWidget()
         self.r_listWidget.setObjectName("articulation_editor")
 
-        # Color or Icon
-        item = QListWidgetItem()  # 创建QListWidgetItem对象
-        item.setSizeHint(QSize(50, 40))  # 设置QListWidgetItem大小
-        widget = self.ui_art_line_desc_title("Common Options")  # 调用上面的函数获取对应
-        self.r_listWidget.addItem(item)  # 添加item
-        self.r_listWidget.setItemWidget(item, widget)  # 为item设置widget
+        item = QListWidgetItem()
+        item.setSizeHint(QSize(50, 40))
+        widget = self.ui_art_line_desc_title("Common Options")
+        self.r_listWidget.addItem(item)
+        self.r_listWidget.setItemWidget(item, widget)
 
-        # Art Line Desc Detail
-        item = QListWidgetItem()  # 创建QListWidgetItem对象
-        item.setSizeHint(QSize(50, 40))  # 设置QListWidgetItem大小
-        widget = self.ui_art_line_desc_detail()  # 调用上面的函数获取对应
-        self.r_listWidget.addItem(item)  # 添加item
-        self.r_listWidget.setItemWidget(item, widget)  # 为item设置widget
+        item = QListWidgetItem()
+        item.setSizeHint(QSize(50, 40))
+        widget = self.ui_art_line_desc_detail()
+        self.r_listWidget.addItem(item)
+        self.r_listWidget.setItemWidget(item, widget)
 
-        # Icon Detail
-        item = QListWidgetItem()  # 创建QListWidgetItem对象
-        item.setSizeHint(QSize(50, 40))  # 设置QListWidgetItem大小
-        widget = self.ui_art_icon_detail()  # 调用上面的函数获取对应
-        self.r_listWidget.addItem(item)  # 添加item
-        self.r_listWidget.setItemWidget(item, widget)  # 为item设置widget
+        item = QListWidgetItem()
+        item.setSizeHint(QSize(50, 40))
+        widget = self.ui_art_icon_detail()
+        self.r_listWidget.addItem(item)
+        self.r_listWidget.setItemWidget(item, widget)
 
-        # color detail
-        item = QListWidgetItem()  # 创建QListWidgetItem对象
-        item.setSizeHint(QSize(50, 40))  # 设置QListWidgetItem大小
-        widget = self.ui_art_color_detail()  # 调用上面的函数获取对应
-        self.r_listWidget.addItem(item)  # 添加item
-        self.r_listWidget.setItemWidget(item, widget)  # 为item设置widget
+        item = QListWidgetItem()
+        item.setSizeHint(QSize(50, 40))
+        widget = self.ui_art_color_detail()
+        self.r_listWidget.addItem(item)
+        self.r_listWidget.setItemWidget(item, widget)
 
-        # group detail
-        item = QListWidgetItem()  # 创建QListWidgetItem对象
-        item.setSizeHint(QSize(50, 40))  # 设置QListWidgetItem大小
-        widget = self.ui_art_group_detail()  # 调用上面的函数获取对应
-        self.r_listWidget.addItem(item)  # 添加item
-        self.r_listWidget.setItemWidget(item, widget)  # 为item设置widget
+        item = QListWidgetItem()
+        item.setSizeHint(QSize(50, 40))
+        widget = self.ui_art_group_detail()
+        self.r_listWidget.addItem(item)
+        self.r_listWidget.setItemWidget(item, widget)
 
-        # Actions
-        item = QListWidgetItem()  # 创建QListWidgetItem对象
-        item.setSizeHint(QSize(50, 40))  # 设置QListWidgetItem大小
-        widget = self.ui_art_line_desc_title("Control Actions")  # 调用上面的函数获取对应
-        self.r_listWidget.addItem(item)  # 添加item
-        self.r_listWidget.setItemWidget(item, widget)  # 为item设置widget
+        item = QListWidgetItem()
+        item.setSizeHint(QSize(50, 40))
+        widget = self.ui_art_line_desc_title("Control Actions")
+        self.r_listWidget.addItem(item)
+        self.r_listWidget.setItemWidget(item, widget)
 
-        # create or delete Actions
-        item = QListWidgetItem()  # 创建QListWidgetItem对象
-        item.setSizeHint(QSize(50, 40))  # 设置QListWidgetItem大小
-        widget = self.ui_art_add_action()  # 调用上面的函数获取对应
-        self.r_listWidget.addItem(item)  # 添加item
-        self.r_listWidget.setItemWidget(item, widget)  # 为item设置widget
+        item = QListWidgetItem()
+        item.setSizeHint(QSize(50, 40))
+        widget = self.ui_art_add_action()
+        self.r_listWidget.addItem(item)
+        self.r_listWidget.setItemWidget(item, widget)
 
-        # add actions
         actions = self.selected_art_data.get('o', [])
         for action in actions:
             widget = None
@@ -745,19 +730,18 @@ class ReaticulateEditor(QWidget):
             elif type == "note-hold":
                 widget = self.ui_art_note_hold_control(action)
             else:
-                # not supported
                 pass
             if widget:
-                item = QListWidgetItem()  # 创建QListWidgetItem对象
-                item.setSizeHint(QSize(50, 40))  # 设置QListWidgetItem大小
-                self.r_listWidget.addItem(item)  # 添加item
-                self.r_listWidget.setItemWidget(item, widget)  # 为item设置widget
+                item = QListWidgetItem()
+                item.setSizeHint(QSize(50, 40))
+                self.r_listWidget.addItem(item)
+                self.r_listWidget.setItemWidget(item, widget)
 
         layout_main.addWidget(self.r_listWidget)
         layout_main.addWidget(self.ui_editor_bottom())
-        wight.setLayout(layout_main)  # 布局给wight
+        wight.setLayout(layout_main)
         wight.setEnabled(enable)
-        return wight  # 返回wight
+        return wight
 
     def ui_art_line_desc_title(self, label_name):
         wight = QWidget()
@@ -783,7 +767,7 @@ class ReaticulateEditor(QWidget):
         no_val = self.selected_art_data.get('no', None)
         name_val = self.selected_art_data.get("name", None)
 
-        # 总体横向布局
+
         wight = QWidget()
         wight.adjustSize()
         editor_layout = QHBoxLayout()
@@ -791,7 +775,7 @@ class ReaticulateEditor(QWidget):
 
         laber_no = QLabel()
         ft = QFont()
-        ft.setPointSize(17)
+        ft.setPointSize(10)
         laber_no.setFont(ft)
         laber_no.setText("No:")
         laber_no.setFixedWidth(50)
@@ -808,7 +792,7 @@ class ReaticulateEditor(QWidget):
 
         laber_name = QLabel()
         ft = QFont()
-        ft.setPointSize(17)
+        ft.setPointSize(10)
         laber_name.setFont(ft)
         laber_name.setText("Name:")
         laber_name.setMargin(5)
@@ -828,7 +812,6 @@ class ReaticulateEditor(QWidget):
     def ui_art_icon_detail(self):
         icon_val = self.selected_art_data.get("i", None)
 
-        # 总体横向布局
         wight = QWidget()
         wight.adjustSize()
         editor_layout = QHBoxLayout()
@@ -836,10 +819,10 @@ class ReaticulateEditor(QWidget):
 
         laber_icon = QLabel()
         ft = QFont()
-        ft.setPointSize(17)
+        ft.setPointSize(10)
         laber_icon.setFont(ft)
         laber_icon.setText("Icon:")
-        laber_icon.setFixedWidth(47)
+        laber_icon.setFixedWidth(50)
         laber_icon.setScaledContents(True)
         laber_icon.setAlignment(Qt.AlignVCenter)
         laber_icon.adjustSize()
@@ -877,7 +860,6 @@ class ReaticulateEditor(QWidget):
                     color = "#928179"
                     break
 
-        # 总体横向布局
         wight = QWidget()
         wight.adjustSize()
         editor_layout = QHBoxLayout()
@@ -885,10 +867,10 @@ class ReaticulateEditor(QWidget):
 
         laber_color = QLabel()
         ft = QFont()
-        ft.setPointSize(17)
+        ft.setPointSize(10)
         laber_color.setFont(ft)
         laber_color.setText("Color:")
-        laber_color.setFixedWidth(43)
+        laber_color.setFixedWidth(50)
         laber_color.setScaledContents(True)
         laber_color.setAlignment(Qt.AlignVCenter)
         laber_color.adjustSize()
@@ -915,7 +897,7 @@ class ReaticulateEditor(QWidget):
 
         laber_group = QLabel()
         ft = QFont()
-        ft.setPointSize(17)
+        ft.setPointSize(10)
         laber_group.setFont(ft)
         laber_group.setText("Group:")
         laber_group.setFixedWidth(50)
@@ -963,7 +945,6 @@ class ReaticulateEditor(QWidget):
         cc_no = cc.split(',')[0]
         cc_val = cc.split(',')[1]
 
-        # 总体横向布局
         wight = QWidget()
         wight.adjustSize()
         editor_layout = QHBoxLayout()
@@ -971,10 +952,10 @@ class ReaticulateEditor(QWidget):
 
         laber_cc = QLabel()
         ft = QFont()
-        ft.setPointSize(17)
+        ft.setPointSize(10)
         laber_cc.setFont(ft)
         laber_cc.setText("CC:")
-        laber_cc.setFixedWidth(30)
+        laber_cc.setFixedWidth(50)
         laber_cc.setScaledContents(True)
         laber_cc.setAlignment(Qt.AlignVCenter)
         laber_cc.adjustSize()
@@ -988,7 +969,7 @@ class ReaticulateEditor(QWidget):
 
         laber_out = QLabel()
         ft = QFont()
-        ft.setPointSize(17)
+        ft.setPointSize(10)
         laber_out.setFont(ft)
         laber_out.setText("Out:")
         laber_out.setFixedWidth(30)
@@ -1003,7 +984,7 @@ class ReaticulateEditor(QWidget):
 
         laber_ch = QLabel()
         ft = QFont()
-        ft.setPointSize(17)
+        ft.setPointSize(10)
         laber_ch.setFont(ft)
         laber_ch.setText("CH:")
         laber_ch.setFixedWidth(30)
@@ -1048,7 +1029,6 @@ class ReaticulateEditor(QWidget):
             note_num = note.strip()
             note_val = '127'
 
-        # 总体横向布局
         wight = QWidget()
         wight.adjustSize()
         editor_layout = QHBoxLayout()
@@ -1056,7 +1036,7 @@ class ReaticulateEditor(QWidget):
 
         laber_note = QLabel()
         ft = QFont()
-        ft.setPointSize(17)
+        ft.setPointSize(10)
         laber_note.setFont(ft)
         laber_note.setText("Note:")
         laber_note.setFixedWidth(50)
@@ -1072,10 +1052,9 @@ class ReaticulateEditor(QWidget):
         comb_note.setCurrentIndex(notes.index(current_note) if current_note in notes else 'C-1')
         editor_layout.addWidget(comb_note)
 
-
         laber_out = QLabel()
         ft = QFont()
-        ft.setPointSize(17)
+        ft.setPointSize(10)
         laber_out.setFont(ft)
         laber_out.setText("Vel:")
         laber_out.setFixedWidth(30)
@@ -1090,7 +1069,7 @@ class ReaticulateEditor(QWidget):
 
         laber_ch = QLabel()
         ft = QFont()
-        ft.setPointSize(17)
+        ft.setPointSize(10)
         laber_ch.setFont(ft)
         laber_ch.setText("CH:")
         laber_ch.setFixedWidth(30)
@@ -1142,7 +1121,7 @@ class ReaticulateEditor(QWidget):
 
         laber_note = QLabel()
         ft = QFont()
-        ft.setPointSize(17)
+        ft.setPointSize(10)
         laber_note.setFont(ft)
         laber_note.setText("Note-Hold:")
         laber_note.setFixedWidth(95)
@@ -1160,7 +1139,7 @@ class ReaticulateEditor(QWidget):
 
         laber_out = QLabel()
         ft = QFont()
-        ft.setPointSize(17)
+        ft.setPointSize(10)
         laber_out.setFont(ft)
         laber_out.setText("Vel:")
         laber_out.setFixedWidth(30)
@@ -1175,7 +1154,7 @@ class ReaticulateEditor(QWidget):
 
         laber_ch = QLabel()
         ft = QFont()
-        ft.setPointSize(17)
+        ft.setPointSize(10)
         laber_ch.setFont(ft)
         laber_ch.setText("CH:")
         laber_ch.setFixedWidth(30)
@@ -1210,7 +1189,7 @@ class ReaticulateEditor(QWidget):
         return wight
 
     def ui_editor_bottom(self):
-        # 总体横向布局
+
         wight = QWidget()
         wight.adjustSize()
         editor_layout = QHBoxLayout()
@@ -1240,11 +1219,10 @@ class ReaticulateEditor(QWidget):
         else:
             item.setExpanded(not item.isExpanded())
 
-        # init right
         self.selected_art_index = None
         self.selected_art_data = {}
         self.clean_selected_components()
-        # reset right
+
         right_editor = self.ui_articulation_editor()
         if hasattr(self, 'right_editor'):
             self.grid_layout.removeWidget(self.right_editor)
@@ -1269,30 +1247,30 @@ class ReaticulateEditor(QWidget):
         self.components_art_color_label.setStyleSheet(f'background-color: {color.name()};')
 
     def action_add_cc_control(self):
-        item = QListWidgetItem()  # 创建QListWidgetItem对象
-        item.setSizeHint(QSize(50, 40))  # 设置QListWidgetItem大小
-        widget = self.ui_art_cc_control({})  # 调用上面的函数获取对应
-        self.r_listWidget.addItem(item)  # 添加item
-        self.r_listWidget.setItemWidget(item, widget)  # 为item设置widget
+        item = QListWidgetItem()
+        item.setSizeHint(QSize(50, 40))
+        widget = self.ui_art_cc_control({})
+        self.r_listWidget.addItem(item)
+        self.r_listWidget.setItemWidget(item, widget)
 
     def action_add_note_control(self):
-        item = QListWidgetItem()  # 创建QListWidgetItem对象
-        item.setSizeHint(QSize(50, 40))  # 设置QListWidgetItem大小
-        widget = self.ui_art_note_control({})  # 调用上面的函数获取对应
-        self.r_listWidget.addItem(item)  # 添加item
-        self.r_listWidget.setItemWidget(item, widget)  # 为item设置widget
+        item = QListWidgetItem()
+        item.setSizeHint(QSize(50, 40))
+        widget = self.ui_art_note_control({})
+        self.r_listWidget.addItem(item)
+        self.r_listWidget.setItemWidget(item, widget)
 
     def action_add_note_hold_control(self):
-        item = QListWidgetItem()  # 创建QListWidgetItem对象
-        item.setSizeHint(QSize(50, 40))  # 设置QListWidgetItem大小
-        widget = self.ui_art_note_hold_control({})  # 调用上面的函数获取对应
-        self.r_listWidget.addItem(item)  # 添加item
-        self.r_listWidget.setItemWidget(item, widget)  # 为item设置widget
+        item = QListWidgetItem()
+        item.setSizeHint(QSize(50, 40))
+        widget = self.ui_art_note_hold_control({})
+        self.r_listWidget.addItem(item)
+        self.r_listWidget.setItemWidget(item, widget)
 
     def action_del_control(self):
         item = self.sender().parent()
         row = self.r_listWidget.indexAt(item.pos()).row()
-        # 删除item
+
         self.r_listWidget.takeItem(row)
         self.components_art_control_list.remove(self.components_art_control_list[row-7])
 
@@ -1388,7 +1366,6 @@ class ReaticulateEditor(QWidget):
         self.selected_art_data = {}
         self.clean_selected_components()
 
-        # set currentItem
         self.bank_tree.setCurrentItem(self.tree_nodes[self.selected_full_name])
 
         middle_list = self.ui_middle()
@@ -1397,7 +1374,6 @@ class ReaticulateEditor(QWidget):
         self.grid_layout.addWidget(middle_list, 0, 1)
         self.middle_list = middle_list
 
-        # reset right
         right_editor = self.ui_articulation_editor()
         if hasattr(self, 'right_editor'):
             self.grid_layout.removeWidget(self.right_editor)
@@ -1430,7 +1406,7 @@ class ReaticulateEditor(QWidget):
                     ]
                 }
             )
-            # Refresh middle and right
+
             self.selected_art_index = len(self.data[self.selected_full_name]['list']) -1
             self.selected_art_data = self.data[self.selected_full_name]['list'][self.selected_art_index]
             self.clean_selected_components()
@@ -1452,7 +1428,7 @@ class ReaticulateEditor(QWidget):
     def action_del_selected_articulation(self):
         if self.selected_full_name and self.selected_art_index is not None:
             del self.data[self.selected_full_name]['list'][self.selected_art_index]
-            # Refresh middle and right
+
             self.selected_art_index = None
             self.selected_art_data = {}
             self.clean_selected_components()
@@ -1476,14 +1452,14 @@ class ReaticulateEditor(QWidget):
             for art_index, art_info in enumerate(bank_info['list']):
                 del_control_indexes = []
                 for control_index, control_info in enumerate(art_info['o']):
-                    # check args
+
                     if control_info['type'] == "cc":
                         if ',' in control_info['args'] and all(control_info['args'].split(',')):
                             continue
                         else:
                             del_control_indexes.append(control_index)
                     if control_info['type'] == 'note' or control_info['type'] == 'note-hole':
-                        # 控件有默认值，无需再check
+
                         pass
                 art_info['o'] = [x for x_index, x in enumerate(art_info['o']) if x_index not in del_control_indexes]
                 if not all([art_info['no'], art_info['name'], art_info['o']]):
@@ -1504,7 +1480,6 @@ class ReaticulateEditor(QWidget):
     def action_save_to_file(self):
         self.action_check_data_in_memory()
         FileUtil.save_file(self.data)
-        # save to file TODO
 
     def clean_selected_components(self):
         self.components_art_no_input = None
@@ -1530,7 +1505,6 @@ class ReaticulateEditor(QWidget):
         self.clean_selected_components()
         self.tree_nodes = {}
 
-        # Refresh left, middle and right
         left_tree = self.ui_left()
         if hasattr(self, "left_tree"):
             self.grid_layout.removeWidget(self.left_tree)
@@ -1551,12 +1525,12 @@ class ReaticulateEditor(QWidget):
 
 
 def main():
-    app = QApplication(sys.argv)
-    data = FileUtil.parse_file('./Reaticulate.reabank')
-    editor = ReaticulateEditor(data=data)
-    editor.show()
-    sys.exit(app.exec_())
-
+    if Path(reabank_file_path).is_file():
+        app = QApplication(sys.argv)
+        data = FileUtil.parse_file(reabank_file_path)
+        editor = ReaticulateEditor(data=data)
+        editor.show()
+        sys.exit(app.exec_())
 
 if __name__ == '__main__':
     main()
