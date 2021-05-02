@@ -620,7 +620,7 @@ class ReaticulateEditor(QWidget):
         name = QLabel(data['name'])
         name.setAlignment(Qt.AlignVCenter)
 
-        group = QLabel(f"[{data['g']}]" if 'g' in data else '1')
+        group = QLabel(f"[{data['g']}]" if 'g' in data else '[1]')
         group.setFixedWidth(18)
         group.setAlignment(Qt.AlignVCenter)
 
