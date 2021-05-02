@@ -35,7 +35,6 @@ def main():
         cmd = f"python {editor_path} {reaper_resource_path} &"
     else:
         cmd = f"python {editor_path} {reaper_resource_path} &"
-    RPR_ShowConsoleMsg(cmd)
     subprocess.run(cmd, shell=True)
     
 

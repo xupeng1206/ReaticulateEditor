@@ -1525,12 +1525,14 @@ class ReaticulateEditor(QWidget):
 
 
 def main():
-    if Path(reabank_file_path).is_file():
-        app = QApplication(sys.argv)
-        data = FileUtil.parse_file(reabank_file_path)
-        editor = ReaticulateEditor(data=data)
-        editor.show()
-        sys.exit(app.exec_())
+    if not Path(reabank_file_path).is_file():
+        with open(reabank_file_path, 'w') as f:
+            f.writelines("\n")
+    app = QApplication(sys.argv)
+    data = FileUtil.parse_file(reabank_file_path)
+    editor = ReaticulateEditor(data=data)
+    editor.show()
+    sys.exit(app.exec_())
 
 if __name__ == '__main__':
     main()
