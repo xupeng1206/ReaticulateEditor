@@ -5,20 +5,24 @@ github        https://github.com/xupeng1206
 
 """
 
-import sys
 import os
-from subprocess import run
+import platform
 from reaper_python import *
-from multiprocessing import Process
 
 def main():
     reaper_resource_path = RPR_GetResourcePath()
     editor_path = os.path.join(reaper_resource_path, "Scripts", "ReaticulateEditor", "reaticulate_editor.py")
-    cmd = f"python {editor_path} {reaper_resource_path}"
+    system_type = platform.system()
+    if system_type == "Window":
+        cmd = f'start cmd /c python {editor_path} {reaper_resource_path}'
+    elif system_type == "Darwin":  # mac os 10.15.7
+        cmd = f"python {editor_path} {reaper_resource_path} &"
+    elif system_type == "Linux":
+        cmd = f"python {editor_path} {reaper_resource_path} &"
+    else:
+        cmd = f"python {editor_path} {reaper_resource_path} &"
     os.system(cmd)
 
 
 if __name__ == '__main__':
-    p = Process(target=main)
-    p.start()
-    p.join()
+    main()
