@@ -22,6 +22,10 @@ reabank_file_path = os.path.join(reaper_resource_path, "Data", "Reaticulate.reab
 folder_icon_path = os.path.join(reaper_resource_path, "Scripts", "ReaticulateEditor", "icons", "folder.jpeg")
 item_icon_path = os.path.join(reaper_resource_path, "Scripts", "ReaticulateEditor", "icons", "item.jpeg")
 
+g_laber_font_size = 10
+g_tree_font_size = 10
+g_desc_font_size = 20
+
 g_icons = [
     'accented-half',
     'accented-quarter',
@@ -250,21 +254,29 @@ class FileUtil:
                                 controls = o_vals.split('/')
                                 controls = [x.strip() for x in controls if x != '']
                                 for control in controls:
-                                    control_k_v = control.split(':')
-                                    control_prefix = control_k_v[0]
-                                    ch = ''
-                                    if '@' in control_prefix:
-                                        control_type = control_prefix.split('@')[0]
-                                        ch = control_prefix.split('@')[1]
+                                    if ':' in control:
+                                        control_k_v = control.split(':')
+                                        control_prefix = control_k_v[0]
+                                        ch = ''
+                                        if '@' in control_prefix:
+                                            control_type = control_prefix.split('@')[0]
+                                            ch = control_prefix.split('@')[1]
+                                        else:
+                                            control_type = control_prefix
+                                        control_args = control_k_v[1]
+                                        control_info = {}
+                                        control_info['type'] = control_type
+                                        if ch:
+                                            control_info['channel'] = ch
+                                        control_info['args'] = control_args
+                                        art_info['o'].append(control_info)
+                                    elif '@' in control:  # only channel
+                                        control_info = {}
+                                        control_info['type'] = "channel"
+                                        control_info['channel'] = control.split('@')[1].strip()
+                                        art_info['o'].append(control_info)
                                     else:
-                                        control_type = control_prefix
-                                    control_args = control_k_v[1]
-                                    control_info = {}
-                                    control_info['type'] = control_type
-                                    if ch:
-                                        control_info['chancel'] = ch
-                                    control_info['args'] = control_args
-                                    art_info['o'].append(control_info)
+                                        pass
                         bank_info['list'].append(art_info)
                     else:
                         art_no = line.split(' ')[0]
@@ -471,7 +483,7 @@ class ReaticulateEditor(QWidget):
         root = QTreeWidgetItem(self.bank_tree)
         for i in range(4):
             ft = QFont()
-            ft.setPointSize(10)
+            ft.setPointSize(g_tree_font_size)
             root.setFont(i, ft)
         root.setText(0, 'Librarys')
         root.setIcon(0, QIcon(folder_icon_path))
@@ -486,7 +498,7 @@ class ReaticulateEditor(QWidget):
                     current_item = QTreeWidgetItem()
                     for i in range(4):
                         ft = QFont()
-                        ft.setPointSize(10)
+                        ft.setPointSize(g_tree_font_size)
                         current_item.setFont(i, ft)
                     current_item.setText(0, names[index])
                     current_item.setIcon(0, QIcon(folder_icon_path))
@@ -513,7 +525,7 @@ class ReaticulateEditor(QWidget):
 
         laber = QLabel()
         ft = QFont()
-        ft.setPointSize(10)
+        ft.setPointSize(g_laber_font_size)
         laber.setFont(ft)
         laber.setText("Full Name:")
         laber.setFixedWidth(70)
@@ -590,7 +602,7 @@ class ReaticulateEditor(QWidget):
         text = f"Full Name:  /{self.selected_full_name}" if self.selected_full_name else "Full Name:"
         laber = QLabel(text)
         ft = QFont()
-        ft.setPointSize(10)
+        ft.setPointSize(g_laber_font_size)
         laber.setFont(ft)
         layout_main.addWidget(laber)
 
@@ -631,12 +643,17 @@ class ReaticulateEditor(QWidget):
         actions = data['o']
         action_texts = []
         for action in actions:
-            if 'channel' in action:
-                action_text = f'{action["type"] if "type" in action else ""}@{action["channel"]}:{action["args"] if "args" in action else ""}'
+            if action['type'] in ['cc', 'note', 'note-hold']:
+                if 'channel' in action:
+                    action_text = f'{action["type"] if "type" in action else ""}@{action["channel"]}:{action["args"] if "args" in action else ""}'
+                else:
+                    action_text = f'{action["type"] if "type" in action else ""}:{action["args"] if "args" in action else ""}'
+                    if action_text == ":":
+                        continue
+            elif action['type'] == 'channel':
+                action_text = f'@{action["channel"]}'
             else:
-                action_text = f'{action["type"] if "type" in action else ""}:{action["args"] if "args" in action else ""}'
-                if action_text == ":":
-                    continue
+                continue
             action_texts.append(action_text)
         actions_text = "o=" + '/'.join(action_texts)
 
@@ -729,6 +746,8 @@ class ReaticulateEditor(QWidget):
                 widget = self.ui_art_note_control(action)
             elif type == "note-hold":
                 widget = self.ui_art_note_hold_control(action)
+            elif type == "channel":
+                wight = self.ui_art_ch_control(action)
             else:
                 pass
             if widget:
@@ -751,7 +770,7 @@ class ReaticulateEditor(QWidget):
 
         laber = QLabel()
         ft = QFont()
-        ft.setPointSize(20)
+        ft.setPointSize(g_desc_font_size)
         laber.setFont(ft)
         laber.setText(label_name)
         laber.setScaledContents(True)
@@ -775,7 +794,7 @@ class ReaticulateEditor(QWidget):
 
         laber_no = QLabel()
         ft = QFont()
-        ft.setPointSize(10)
+        ft.setPointSize(g_laber_font_size)
         laber_no.setFont(ft)
         laber_no.setText("No:")
         laber_no.setFixedWidth(50)
@@ -792,7 +811,7 @@ class ReaticulateEditor(QWidget):
 
         laber_name = QLabel()
         ft = QFont()
-        ft.setPointSize(10)
+        ft.setPointSize(g_laber_font_size)
         laber_name.setFont(ft)
         laber_name.setText("Name:")
         laber_name.setMargin(5)
@@ -819,7 +838,7 @@ class ReaticulateEditor(QWidget):
 
         laber_icon = QLabel()
         ft = QFont()
-        ft.setPointSize(10)
+        ft.setPointSize(g_laber_font_size)
         laber_icon.setFont(ft)
         laber_icon.setText("Icon:")
         laber_icon.setFixedWidth(50)
@@ -867,7 +886,7 @@ class ReaticulateEditor(QWidget):
 
         laber_color = QLabel()
         ft = QFont()
-        ft.setPointSize(10)
+        ft.setPointSize(g_laber_font_size)
         laber_color.setFont(ft)
         laber_color.setText("Color:")
         laber_color.setFixedWidth(50)
@@ -897,7 +916,7 @@ class ReaticulateEditor(QWidget):
 
         laber_group = QLabel()
         ft = QFont()
-        ft.setPointSize(10)
+        ft.setPointSize(g_laber_font_size)
         laber_group.setFont(ft)
         laber_group.setText("Group:")
         laber_group.setFixedWidth(50)
@@ -930,9 +949,13 @@ class ReaticulateEditor(QWidget):
         btn_add_note_hold = QPushButton('+ NoteHold')
         btn_add_note_hold.clicked.connect(self.action_add_note_hold_control)
 
+        btn_add_ch = QPushButton('+ Channel')
+        btn_add_ch.clicked.connect(self.action_add_ch_control)
+
         editor_layout.addWidget(btn_add_cc)
         editor_layout.addWidget(btn_add_note)
         editor_layout.addWidget(btn_add_note_hold)
+        editor_layout.addWidget(btn_add_ch)
 
         wight.setLayout(editor_layout)
         return wight
@@ -952,7 +975,7 @@ class ReaticulateEditor(QWidget):
 
         laber_cc = QLabel()
         ft = QFont()
-        ft.setPointSize(10)
+        ft.setPointSize(g_laber_font_size)
         laber_cc.setFont(ft)
         laber_cc.setText("CC:")
         laber_cc.setFixedWidth(50)
@@ -969,7 +992,7 @@ class ReaticulateEditor(QWidget):
 
         laber_out = QLabel()
         ft = QFont()
-        ft.setPointSize(10)
+        ft.setPointSize(g_laber_font_size)
         laber_out.setFont(ft)
         laber_out.setText("Out:")
         laber_out.setFixedWidth(30)
@@ -984,9 +1007,9 @@ class ReaticulateEditor(QWidget):
 
         laber_ch = QLabel()
         ft = QFont()
-        ft.setPointSize(10)
+        ft.setPointSize(g_laber_font_size)
         laber_ch.setFont(ft)
-        laber_ch.setText("CH:")
+        laber_ch.setText("Ch:")
         laber_ch.setFixedWidth(30)
         laber_ch.setScaledContents(True)
         laber_ch.setAlignment(Qt.AlignVCenter)
@@ -1036,7 +1059,7 @@ class ReaticulateEditor(QWidget):
 
         laber_note = QLabel()
         ft = QFont()
-        ft.setPointSize(10)
+        ft.setPointSize(g_laber_font_size)
         laber_note.setFont(ft)
         laber_note.setText("Note:")
         laber_note.setFixedWidth(50)
@@ -1054,7 +1077,7 @@ class ReaticulateEditor(QWidget):
 
         laber_out = QLabel()
         ft = QFont()
-        ft.setPointSize(10)
+        ft.setPointSize(g_laber_font_size)
         laber_out.setFont(ft)
         laber_out.setText("Vel:")
         laber_out.setFixedWidth(30)
@@ -1069,9 +1092,9 @@ class ReaticulateEditor(QWidget):
 
         laber_ch = QLabel()
         ft = QFont()
-        ft.setPointSize(10)
+        ft.setPointSize(g_laber_font_size)
         laber_ch.setFont(ft)
-        laber_ch.setText("CH:")
+        laber_ch.setText("Ch:")
         laber_ch.setFixedWidth(30)
         laber_ch.setScaledContents(True)
         laber_ch.setAlignment(Qt.AlignVCenter)
@@ -1121,7 +1144,7 @@ class ReaticulateEditor(QWidget):
 
         laber_note = QLabel()
         ft = QFont()
-        ft.setPointSize(10)
+        ft.setPointSize(g_laber_font_size)
         laber_note.setFont(ft)
         laber_note.setText("Note-Hold:")
         laber_note.setFixedWidth(95)
@@ -1139,7 +1162,7 @@ class ReaticulateEditor(QWidget):
 
         laber_out = QLabel()
         ft = QFont()
-        ft.setPointSize(10)
+        ft.setPointSize(g_laber_font_size)
         laber_out.setFont(ft)
         laber_out.setText("Vel:")
         laber_out.setFixedWidth(30)
@@ -1154,9 +1177,9 @@ class ReaticulateEditor(QWidget):
 
         laber_ch = QLabel()
         ft = QFont()
-        ft.setPointSize(10)
+        ft.setPointSize(g_laber_font_size)
         laber_ch.setFont(ft)
-        laber_ch.setText("CH:")
+        laber_ch.setText("Ch:")
         laber_ch.setFixedWidth(30)
         laber_ch.setScaledContents(True)
         laber_ch.setAlignment(Qt.AlignVCenter)
@@ -1183,6 +1206,48 @@ class ReaticulateEditor(QWidget):
             'type': 'note-hold',
             'note': comb_note,
             'vel': note_vel_out,
+            'ch': comb_ch,
+        })
+
+        return wight
+
+    def ui_art_ch_control(self, data):
+
+        ch = data.get('channel', '1')
+
+        wight = QWidget()
+        wight.adjustSize()
+        editor_layout = QHBoxLayout()
+        editor_layout.setContentsMargins(10, 2, 10, 2)
+
+        laber_ch = QLabel()
+        ft = QFont()
+        ft.setPointSize(g_laber_font_size)
+        laber_ch.setFont(ft)
+        laber_ch.setText("Ch:")
+        laber_ch.setFixedWidth(30)
+        laber_ch.setScaledContents(True)
+        laber_ch.setAlignment(Qt.AlignVCenter)
+        laber_ch.adjustSize()
+        editor_layout.addWidget(laber_ch)
+
+        comb_ch = QComboBox()
+        chs = [str(x) for x in range(1, 17)]  # only 1-16 here without 'all'
+        comb_ch.addItems(chs)
+        comb_ch.setCurrentIndex(chs.index(ch) if ch in chs else 0)
+        editor_layout.addWidget(comb_ch)
+
+        btn_del = QPushButton('X')
+        btn_del.setFixedWidth(30)
+        btn_del.setContentsMargins(0, 0, 0, 0)
+        btn_del.setStyleSheet(f'color: #ff6633;')
+        btn_del.clicked.connect(self.action_del_control)
+        editor_layout.addWidget(btn_del)
+
+        wight.setLayout(editor_layout)
+
+        self.components_art_control_list.append({
+            'type': 'channel',
             'ch': comb_ch,
         })
 
@@ -1267,6 +1332,13 @@ class ReaticulateEditor(QWidget):
         self.r_listWidget.addItem(item)
         self.r_listWidget.setItemWidget(item, widget)
 
+    def action_add_ch_control(self):
+        item = QListWidgetItem()
+        item.setSizeHint(QSize(50, 40))
+        widget = self.ui_art_ch_control({})
+        self.r_listWidget.addItem(item)
+        self.r_listWidget.setItemWidget(item, widget)
+
     def action_del_control(self):
         item = self.sender().parent()
         row = self.r_listWidget.indexAt(item.pos()).row()
@@ -1316,6 +1388,10 @@ class ReaticulateEditor(QWidget):
                 ch = item['ch'].currentText()
                 if ch != "all":
                     control["channel"] = ch
+            elif control_type == "channel":
+                control['type'] = "channel"
+                ch = item['ch'].currentText()
+                control["channel"] = ch
             else:
                 pass
             out_event.append(control)
@@ -1458,8 +1534,7 @@ class ReaticulateEditor(QWidget):
                             continue
                         else:
                             del_control_indexes.append(control_index)
-                    if control_info['type'] == 'note' or control_info['type'] == 'note-hole':
-
+                    if control_info['type'] == 'note' or control_info['type'] == 'note-hole' or control_info['type'] == "channel":
                         pass
                 art_info['o'] = [x for x_index, x in enumerate(art_info['o']) if x_index not in del_control_indexes]
                 if not all([art_info['no'], art_info['name'], art_info['o']]):
