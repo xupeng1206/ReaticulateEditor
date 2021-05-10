@@ -747,7 +747,7 @@ class ReaticulateEditor(QWidget):
             elif type == "note-hold":
                 widget = self.ui_art_note_hold_control(action)
             elif type == "channel":
-                wight = self.ui_art_ch_control(action)
+                widget = self.ui_art_ch_control(action)
             else:
                 pass
             if widget:
