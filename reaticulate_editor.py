@@ -627,13 +627,13 @@ class ReaticulateEditor(QWidget):
         no_and_name_layout = QHBoxLayout()
 
         no = QLabel(str(data['no']))
-        no.setFixedWidth(15)
+        no.setFixedWidth(25)
         no.setAlignment(Qt.AlignVCenter)
         name = QLabel(data['name'])
         name.setAlignment(Qt.AlignVCenter)
 
         group = QLabel(f"[{data['g']}]" if 'g' in data else '[1]')
-        group.setFixedWidth(18)
+        group.setFixedWidth(20)
         group.setAlignment(Qt.AlignVCenter)
 
         no_and_name_layout.addWidget(no)
@@ -1070,6 +1070,7 @@ class ReaticulateEditor(QWidget):
 
         current_note = g_num_note[note_num]
         comb_note = QComboBox()
+        comb_note.setFixedWidth(70)
         notes = list(g_note_num.keys())
         comb_note.addItems(notes)
         comb_note.setCurrentIndex(notes.index(current_note) if current_note in notes else 'C-1')
@@ -1155,6 +1156,7 @@ class ReaticulateEditor(QWidget):
 
         current_note = g_num_note[note_num]
         comb_note = QComboBox()
+        comb_note.setFixedWidth(70)
         notes = list(g_note_num.keys())
         comb_note.addItems(notes)
         comb_note.setCurrentIndex(notes.index(current_note) if current_note in notes else 'C-1')
