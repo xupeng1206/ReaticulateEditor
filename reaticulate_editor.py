@@ -393,8 +393,8 @@ class ReaticulateEditor(QWidget):
     data = {}
     ori_data = {}
 
-    next_msb = "64"
-    next_lsb = "0"
+    next_msb = "0"
+    next_lsb = "1"
 
     selected_full_name = ""
     selected_art_index = None
@@ -1567,13 +1567,13 @@ class ReaticulateEditor(QWidget):
         self.components_art_control_list = []
 
     def cal_msb_lsb(self):
-        msb_range = [str(x) for x in range(64, 128)]
+        msb_range = [str(x) for x in range(0, 64)]
         lsb_range = [str(x) for x in range(1, 128)]
         msb_lsb_used = [(bank['msb'], bank['lsb']) for bank in self.data.values()]
         for msb_lsb in itertools.product(msb_range, lsb_range):
             if msb_lsb not in msb_lsb_used:
                 return msb_lsb[0], msb_lsb[1]
-        return "127", "127"
+        return "63", "127"
 
     def refresh_all(self):
         self.selected_full_name = ""
