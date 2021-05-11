@@ -393,6 +393,19 @@ class FileUtil:
         else:
             return ''
 
+    @classmethod
+    def find_bank_chase(cls, line):
+        if ' ' in line:
+            line = line + ' '
+            pattern = re.compile(r'chase=(.* +?)')
+        else:
+            pattern = re.compile(r'chase=(.*?)')
+        rets = pattern.findall(line)
+        if rets:
+            return rets[0].strip()
+        else:
+            return ''
+
 
 class ReaticulateEditor(QWidget):
 
