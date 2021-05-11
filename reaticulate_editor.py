@@ -338,7 +338,7 @@ class FileUtil:
                 if m:
                     f.write(f'//! m="{m}"\n')
                 if chase:
-                    f.write(f'//! chase="{chase}"\n')
+                    f.write(f'//! chase={chase}\n')
                 f.write(f'Bank {msb} {lsb} {bank_name if bank_name else n}\n')
                 f.write('\n')
                 for art in vals['list']:
@@ -396,10 +396,13 @@ class FileUtil:
     @classmethod
     def find_bank_chase(cls, line):
         if ' ' in line:
-            line = line + ' '
-            pattern = re.compile(r'chase=(.* +?)')
-        else:
-            pattern = re.compile(r'chase=(.*?)')
+            attrs = line.split(' ')
+            for attr in attrs:
+                if 'chase' in attr:
+                    line = attr
+                    break
+        pattern = re.compile(r'chase=(.*)')
+        line = line.strip()
         rets = pattern.findall(line)
         if rets:
             return rets[0].strip()
