@@ -218,7 +218,7 @@ class FileUtil:
     def parse_file(cls, path):
         cls.path = path
         file_content = ''
-        with open(path, "r") as f:
+        with open(path, "r", encoding='utf-8') as f:
             file_content = f.read()
 
         if not file_content:
@@ -324,7 +324,7 @@ class FileUtil:
     @classmethod
     def save_file(cls, data):
         os.rename(cls.path, f'{cls.path}_{datetime.datetime.now().strftime("%Y%m%d%H%M%S")}')
-        with open(cls.path, "w") as f:
+        with open(cls.path, "w", encoding='utf-8') as f:
             for full_name, vals in data.items():
                 f.write(cls.bank_split + '\n')
                 g = vals.get('g', '')
@@ -1067,7 +1067,7 @@ class ReaticulateEditor(QWidget):
     def ui_art_note_control(self, data):
 
         ch = data.get('channel', 'all')
-        note = data.get('args', "1,127")
+        note = data.get('args', "0,127")
         if ',' in note:
             note_num = note.split(',')[0]
             note_val = note.split(',')[1]
@@ -1153,7 +1153,7 @@ class ReaticulateEditor(QWidget):
     def ui_art_note_hold_control(self, data):
 
         ch = data.get('channel', 'all')
-        note = data.get('args', "1,127")
+        note = data.get('args', "0,127")
         if ',' in note:
             note_num = note.split(',')[0]
             note_val = note.split(',')[1]
@@ -1626,7 +1626,7 @@ class ReaticulateEditor(QWidget):
 
 def main():
     if not Path(reabank_file_path).is_file():
-        with open(reabank_file_path, 'w') as f:
+        with open(reabank_file_path, 'w', encoding='utf-8') as f:
             f.writelines("\n")
     app = QApplication(sys.argv)
     data = FileUtil.parse_file(reabank_file_path)
