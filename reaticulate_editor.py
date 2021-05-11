@@ -295,6 +295,9 @@ class FileUtil:
                         bank_n = cls.find_bank_n(line)
                         if bank_n:
                             bank_info['n'] = bank_n
+                        bank_chase = cls.find_bank_chase(line)
+                        if bank_chase:
+                            bank_info['chase'] = bank_chase
                     elif line.startswith("Bank"):
                         patterns = line.split(' ')
                         patterns = [x.strip() for x in patterns if x != '']
@@ -327,11 +330,15 @@ class FileUtil:
                 g = vals.get('g', '')
                 n = vals.get('n', '')
                 m = vals.get('m', '')
+                chase = vals.get('chase', '')
                 msb = vals['msb']
                 lsb = vals['lsb']
                 bank_name = vals.get('bank_name', '')
                 f.write(f'//! g="{g}" n="{n}"\n')
-                f.write(f'//! m="{m}"\n')
+                if m:
+                    f.write(f'//! m="{m}"\n')
+                if chase:
+                    f.write(f'//! chase="{chase}"\n')
                 f.write(f'Bank {msb} {lsb} {bank_name if bank_name else n}\n')
                 f.write('\n')
                 for art in vals['list']:
