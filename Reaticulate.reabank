@@ -1207,44 +1207,6 @@ Bank 0 18 AGPF
 //! c=short i=note-eighth g=3 o=note:36,127
 14 指定弦1
 
-//! c=long i=note g=2 o=note:37,1/note:40,1
-15 把位0
-//! c=long i=note g=2 o=note:37,1/note:41,1
-16 把位1
-//! c=long i=note g=2 o=note:37,1/note:42,1
-17 把位2
-//! c=long i=note g=2 o=note:37,1/note:43,1
-18 把位3
-//! c=long i=note g=2 o=note:37,1/note:44,1
-19 把位4
-//! c=long i=note g=2 o=note:37,1/note:45,1
-20 把位5
-//! c=long i=note g=2 o=note:37,1/note:46,1
-21 把位6
-//! c=long i=note g=2 o=note:37,1/note:47,1
-22 把位7
-//! c=long i=note g=2 o=note:37,1/note:48,1
-23 把位8
-//! c=long i=note g=2 o=note:37,1/note:49,1
-24 把位9
-//! c=long i=note g=2 o=note:37,1/note:50,1
-25 把位10
-//! c=long i=note g=2 o=note:37,1/note:51,1
-26 把位11
-//! c=long i=note g=2 o=note:37,1/note:52,1
-27 把位12
-//! c=long i=note g=2 o=note:37,1/note:53,1
-28 把位13
-//! c=long i=note g=2 o=note:37,1/note:54,1
-29 把位14
-//! c=long i=note g=2 o=note:37,1/note:55,1
-30 把位15
-//! c=long i=note g=2 o=note:37,1/note:56,1
-31 把位16
-//! c=long i=note g=2 o=note:37,1/note:57,1
-32 把位17
-//! c=long i=note g=2 o=note:37,1/note:58,1
-33 把位18
 
 //! c=long i=note g=2 o=note:37,1/note:40,1
 15 把位0
@@ -1365,45 +1327,6 @@ Bank 0 19 AGLP
 //! c=long i=note g=2 o=note:37,1/note:58,1
 33 把位18
 
-//! c=long i=note g=2 o=note:37,1/note:40,1
-15 把位0
-//! c=long i=note g=2 o=note:37,1/note:41,1
-16 把位1
-//! c=long i=note g=2 o=note:37,1/note:42,1
-17 把位2
-//! c=long i=note g=2 o=note:37,1/note:43,1
-18 把位3
-//! c=long i=note g=2 o=note:37,1/note:44,1
-19 把位4
-//! c=long i=note g=2 o=note:37,1/note:45,1
-20 把位5
-//! c=long i=note g=2 o=note:37,1/note:46,1
-21 把位6
-//! c=long i=note g=2 o=note:37,1/note:47,1
-22 把位7
-//! c=long i=note g=2 o=note:37,1/note:48,1
-23 把位8
-//! c=long i=note g=2 o=note:37,1/note:49,1
-24 把位9
-//! c=long i=note g=2 o=note:37,1/note:50,1
-25 把位10
-//! c=long i=note g=2 o=note:37,1/note:51,1
-26 把位11
-//! c=long i=note g=2 o=note:37,1/note:52,1
-27 把位12
-//! c=long i=note g=2 o=note:37,1/note:53,1
-28 把位13
-//! c=long i=note g=2 o=note:37,1/note:54,1
-29 把位14
-//! c=long i=note g=2 o=note:37,1/note:55,1
-30 把位15
-//! c=long i=note g=2 o=note:37,1/note:56,1
-31 把位16
-//! c=long i=note g=2 o=note:37,1/note:57,1
-32 把位17
-//! c=long i=note g=2 o=note:37,1/note:58,1
-33 把位18
-
 
 //----------------------------------------------------------------------------
 //! g="Ample Sound" n="AGSC"
@@ -1441,45 +1364,6 @@ Bank 0 20 AGSC
 13 指定弦2
 //! c=short i=note-eighth g=3 o=note:36,127
 14 指定弦1
-
-//! c=long i=note g=2 o=note:37,1/note:40,1
-15 把位0
-//! c=long i=note g=2 o=note:37,1/note:41,1
-16 把位1
-//! c=long i=note g=2 o=note:37,1/note:42,1
-17 把位2
-//! c=long i=note g=2 o=note:37,1/note:43,1
-18 把位3
-//! c=long i=note g=2 o=note:37,1/note:44,1
-19 把位4
-//! c=long i=note g=2 o=note:37,1/note:45,1
-20 把位5
-//! c=long i=note g=2 o=note:37,1/note:46,1
-21 把位6
-//! c=long i=note g=2 o=note:37,1/note:47,1
-22 把位7
-//! c=long i=note g=2 o=note:37,1/note:48,1
-23 把位8
-//! c=long i=note g=2 o=note:37,1/note:49,1
-24 把位9
-//! c=long i=note g=2 o=note:37,1/note:50,1
-25 把位10
-//! c=long i=note g=2 o=note:37,1/note:51,1
-26 把位11
-//! c=long i=note g=2 o=note:37,1/note:52,1
-27 把位12
-//! c=long i=note g=2 o=note:37,1/note:53,1
-28 把位13
-//! c=long i=note g=2 o=note:37,1/note:54,1
-29 把位14
-//! c=long i=note g=2 o=note:37,1/note:55,1
-30 把位15
-//! c=long i=note g=2 o=note:37,1/note:56,1
-31 把位16
-//! c=long i=note g=2 o=note:37,1/note:57,1
-32 把位17
-//! c=long i=note g=2 o=note:37,1/note:58,1
-33 把位18
 
 //! c=long i=note g=2 o=note:37,1/note:40,1
 15 把位0
