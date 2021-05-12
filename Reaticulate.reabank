@@ -122,6 +122,15 @@ Bank 0 3 ABA
 //! c=#00aa7f i=note-eighth g=1 o=note:31,127
 7 拍弦
 
+//! c=short i=note-eighth g=3 o=note:100,127
+50 指定弦4
+//! c=short i=note-eighth g=3 o=note:101,127
+51 指定弦3
+//! c=short i=note-eighth g=3 o=note:102,127
+52 指定弦2
+//! c=short i=note-eighth g=3 o=note:103,127
+53 指定弦1
+
 //! c=long i=note g=2 o=note:34,1/note:40,1
 8 把位0
 //! c=long i=note g=2 o=note:34,1/note:41,1
@@ -185,6 +194,15 @@ Bank 0 4 ABJ
 //! c=#00aa7f i=note-eighth g=1 o=note:33,127
 10 勾弦
 
+//! c=short i=note-eighth g=3 o=note:100,127
+50 指定弦4
+//! c=short i=note-eighth g=3 o=note:101,127
+51 指定弦3
+//! c=short i=note-eighth g=3 o=note:102,127
+52 指定弦2
+//! c=short i=note-eighth g=3 o=note:103,127
+53 指定弦1
+
 //! c=long i=note g=2 o=note:34,1/note:40,1
 11 把位0
 //! c=long i=note g=2 o=note:34,1/note:41,1
@@ -246,6 +264,15 @@ Bank 0 5 ABJF
 //! c=#00aa7f i=note-eighth g=1 o=note:33,127
 10 勾弦
 
+//! c=short i=note-eighth g=3 o=note:100,127
+50 指定弦4
+//! c=short i=note-eighth g=3 o=note:101,127
+51 指定弦3
+//! c=short i=note-eighth g=3 o=note:102,127
+52 指定弦2
+//! c=short i=note-eighth g=3 o=note:103,127
+53 指定弦1
+
 //! c=long i=note g=2 o=note:34,1/note:40,1
 11 把位0
 //! c=long i=note g=2 o=note:34,1/note:41,1
@@ -305,6 +332,15 @@ Bank 0 6 ABP
 9 点弦
 //! c=#00aa7f i=note-eighth g=1 o=note:33,127
 10 勾弦
+
+//! c=short i=note-eighth g=3 o=note:100,127
+50 指定弦4
+//! c=short i=note-eighth g=3 o=note:101,127
+51 指定弦3
+//! c=short i=note-eighth g=3 o=note:102,127
+52 指定弦2
+//! c=short i=note-eighth g=3 o=note:103,127
+53 指定弦1
 
 //! c=long i=note g=2 o=note:34,1/note:40,1
 11 把位0
@@ -370,6 +406,15 @@ Bank 0 7 ABY
 //! c=#00aa7f i=note-eighth g=1 o=note:33,127
 10 勾弦
 
+//! c=short i=note-eighth g=3 o=note:100,127
+50 指定弦4
+//! c=short i=note-eighth g=3 o=note:101,127
+51 指定弦3
+//! c=short i=note-eighth g=3 o=note:102,127
+52 指定弦2
+//! c=short i=note-eighth g=3 o=note:103,127
+53 指定弦1
+
 //! c=long i=note g=2 o=note:34,1/note:40,1
 11 把位0
 //! c=long i=note g=2 o=note:34,1/note:41,1
@@ -429,6 +474,15 @@ Bank 0 8 ABU
 5 连奏滑音
 //! c=#00aa7f i=note-eighth g=1 o=note:29,127
 6 击勾弦
+
+//! c=short i=note-eighth g=3 o=note:100,127
+50 指定弦4
+//! c=short i=note-eighth g=3 o=note:101,127
+51 指定弦3
+//! c=short i=note-eighth g=3 o=note:102,127
+52 指定弦2
+//! c=short i=note-eighth g=3 o=note:103,127
+53 指定弦1
 
 //! c=long i=note g=2 o=note:34,1/note:40,1
 11 把位0
