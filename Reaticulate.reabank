@@ -892,3 +892,576 @@ Bank 0 14 AGSJ
 30 把位15
 //! c=long i=note g=2 o=note:37,1/note:56,1
 31 把位16
+
+//----------------------------------------------------------------------------
+//! g="Ample Sound" n="AGVC"
+Bank 0 15 AGVC
+
+//! c=#00aa7f i=note-eighth g=1 o=note:24,127
+1 标准音与重勾
+//! c=#00aa7f i=note-eighth g=1 o=note:25,127
+2 自然泛音
+//! c=#00aa7f i=note-eighth g=1 o=note:26,127
+3 手掌闷音
+//! c=#00aa7f i=note-eighth g=1 o=note:27,127
+4 无头与无尾滑音
+//! c=#00aa7f i=note-eighth g=1 o=note:28,127
+5 连奏滑音
+//! c=#00aa7f i=note-eighth g=1 o=note:29,127
+6 击勾弦
+
+//! c=fx i=fx g=4 o=note:97,127
+7 扫弦On
+//! c=fx i=fx g=4 o=note:97,1
+8 扫弦Off
+
+//! c=short i=note-eighth g=3 o=note:31,127
+9 指定弦6
+//! c=short i=note-eighth g=3 o=note:32,127
+10 指定弦5
+//! c=short i=note-eighth g=3 o=note:33,127
+11 指定弦4
+//! c=short i=note-eighth g=3 o=note:34,127
+12 指定弦3
+//! c=short i=note-eighth g=3 o=note:35,127
+13 指定弦2
+//! c=short i=note-eighth g=3 o=note:36,127
+14 指定弦1
+
+
+//! c=long i=note g=2 o=note:37,1/note:40,1
+15 把位0
+//! c=long i=note g=2 o=note:37,1/note:41,1
+16 把位1
+//! c=long i=note g=2 o=note:37,1/note:42,1
+17 把位2
+//! c=long i=note g=2 o=note:37,1/note:43,1
+18 把位3
+//! c=long i=note g=2 o=note:37,1/note:44,1
+19 把位4
+//! c=long i=note g=2 o=note:37,1/note:45,1
+20 把位5
+//! c=long i=note g=2 o=note:37,1/note:46,1
+21 把位6
+//! c=long i=note g=2 o=note:37,1/note:47,1
+22 把位7
+//! c=long i=note g=2 o=note:37,1/note:48,1
+23 把位8
+//! c=long i=note g=2 o=note:37,1/note:49,1
+24 把位9
+//! c=long i=note g=2 o=note:37,1/note:50,1
+25 把位10
+//! c=long i=note g=2 o=note:37,1/note:51,1
+26 把位11
+//! c=long i=note g=2 o=note:37,1/note:52,1
+27 把位12
+//! c=long i=note g=2 o=note:37,1/note:53,1
+28 把位13
+//! c=long i=note g=2 o=note:37,1/note:54,1
+29 把位14
+//! c=long i=note g=2 o=note:37,1/note:55,1
+30 把位15
+//! c=long i=note g=2 o=note:37,1/note:56,1
+31 把位16
+//! c=long i=note g=2 o=note:37,1/note:57,1
+32 把位17
+//! c=long i=note g=2 o=note:37,1/note:58,1
+33 把位18
+
+//----------------------------------------------------------------------------
+//! g="Ample Sound" n="AGTC"
+Bank 0 16 AGTC
+
+//! c=#00aa7f i=note-eighth g=1 o=note:24,127
+1 标准音与重勾
+//! c=#00aa7f i=note-eighth g=1 o=note:25,127
+2 自然泛音
+//! c=#00aa7f i=note-eighth g=1 o=note:26,127
+3 手掌闷音
+//! c=#00aa7f i=note-eighth g=1 o=note:27,127
+4 无头与无尾滑音
+//! c=#00aa7f i=note-eighth g=1 o=note:28,127
+5 连奏滑音
+//! c=#00aa7f i=note-eighth g=1 o=note:29,127
+6 击勾弦
+
+//! c=fx i=fx g=4 o=note:97,127
+7 扫弦On
+//! c=fx i=fx g=4 o=note:97,1
+8 扫弦Off
+
+//! c=short i=note-eighth g=3 o=note:31,127
+9 指定弦6
+//! c=short i=note-eighth g=3 o=note:32,127
+10 指定弦5
+//! c=short i=note-eighth g=3 o=note:33,127
+11 指定弦4
+//! c=short i=note-eighth g=3 o=note:34,127
+12 指定弦3
+//! c=short i=note-eighth g=3 o=note:35,127
+13 指定弦2
+//! c=short i=note-eighth g=3 o=note:36,127
+14 指定弦1
+
+
+//! c=long i=note g=2 o=note:37,1/note:40,1
+15 把位0
+//! c=long i=note g=2 o=note:37,1/note:41,1
+16 把位1
+//! c=long i=note g=2 o=note:37,1/note:42,1
+17 把位2
+//! c=long i=note g=2 o=note:37,1/note:43,1
+18 把位3
+//! c=long i=note g=2 o=note:37,1/note:44,1
+19 把位4
+//! c=long i=note g=2 o=note:37,1/note:45,1
+20 把位5
+//! c=long i=note g=2 o=note:37,1/note:46,1
+21 把位6
+//! c=long i=note g=2 o=note:37,1/note:47,1
+22 把位7
+//! c=long i=note g=2 o=note:37,1/note:48,1
+23 把位8
+//! c=long i=note g=2 o=note:37,1/note:49,1
+24 把位9
+//! c=long i=note g=2 o=note:37,1/note:50,1
+25 把位10
+//! c=long i=note g=2 o=note:37,1/note:51,1
+26 把位11
+//! c=long i=note g=2 o=note:37,1/note:52,1
+27 把位12
+//! c=long i=note g=2 o=note:37,1/note:53,1
+28 把位13
+//! c=long i=note g=2 o=note:37,1/note:54,1
+29 把位14
+//! c=long i=note g=2 o=note:37,1/note:55,1
+30 把位15
+//! c=long i=note g=2 o=note:37,1/note:56,1
+31 把位16
+//! c=long i=note g=2 o=note:37,1/note:57,1
+32 把位17
+
+//----------------------------------------------------------------------------
+//! g="Ample Sound" n="AGSH"
+Bank 0 17 AGSH
+
+//! c=#00aa7f i=note-eighth g=1 o=note:24,127
+1 标准音与重勾
+//! c=#00aa7f i=note-eighth g=1 o=note:25,127
+2 自然泛音
+//! c=#00aa7f i=note-eighth g=1 o=note:26,127
+3 手掌闷音
+//! c=#00aa7f i=note-eighth g=1 o=note:27,127
+4 无头与无尾滑音
+//! c=#00aa7f i=note-eighth g=1 o=note:28,127
+5 连奏滑音
+//! c=#00aa7f i=note-eighth g=1 o=note:29,127
+6 击勾弦
+
+//! c=fx i=fx g=4 o=note:97,127
+7 扫弦On
+//! c=fx i=fx g=4 o=note:97,1
+8 扫弦Off
+
+//! c=short i=note-eighth g=3 o=note:31,127
+9 指定弦6
+//! c=short i=note-eighth g=3 o=note:32,127
+10 指定弦5
+//! c=short i=note-eighth g=3 o=note:33,127
+11 指定弦4
+//! c=short i=note-eighth g=3 o=note:34,127
+12 指定弦3
+//! c=short i=note-eighth g=3 o=note:35,127
+13 指定弦2
+//! c=short i=note-eighth g=3 o=note:36,127
+14 指定弦1
+
+
+//! c=long i=note g=2 o=note:37,1/note:40,1
+15 把位0
+//! c=long i=note g=2 o=note:37,1/note:41,1
+16 把位1
+//! c=long i=note g=2 o=note:37,1/note:42,1
+17 把位2
+//! c=long i=note g=2 o=note:37,1/note:43,1
+18 把位3
+//! c=long i=note g=2 o=note:37,1/note:44,1
+19 把位4
+//! c=long i=note g=2 o=note:37,1/note:45,1
+20 把位5
+//! c=long i=note g=2 o=note:37,1/note:46,1
+21 把位6
+//! c=long i=note g=2 o=note:37,1/note:47,1
+22 把位7
+//! c=long i=note g=2 o=note:37,1/note:48,1
+23 把位8
+//! c=long i=note g=2 o=note:37,1/note:49,1
+24 把位9
+//! c=long i=note g=2 o=note:37,1/note:50,1
+25 把位10
+//! c=long i=note g=2 o=note:37,1/note:51,1
+26 把位11
+//! c=long i=note g=2 o=note:37,1/note:52,1
+27 把位12
+//! c=long i=note g=2 o=note:37,1/note:53,1
+28 把位13
+//! c=long i=note g=2 o=note:37,1/note:54,1
+29 把位14
+//! c=long i=note g=2 o=note:37,1/note:55,1
+30 把位15
+//! c=long i=note g=2 o=note:37,1/note:56,1
+31 把位16
+//! c=long i=note g=2 o=note:37,1/note:57,1
+32 把位17
+//! c=long i=note g=2 o=note:37,1/note:58,1
+33 把位18
+
+//----------------------------------------------------------------------------
+//! g="Ample Sound" n="AGPF"
+Bank 0 18 AGPF
+
+//! c=#00aa7f i=note-eighth g=1 o=note:24,127
+1 标准音与重勾
+//! c=#00aa7f i=note-eighth g=1 o=note:25,127
+2 自然泛音
+//! c=#00aa7f i=note-eighth g=1 o=note:26,127
+3 手掌闷音
+//! c=#00aa7f i=note-eighth g=1 o=note:27,127
+4 无头与无尾滑音
+//! c=#00aa7f i=note-eighth g=1 o=note:28,127
+5 连奏滑音
+//! c=#00aa7f i=note-eighth g=1 o=note:29,127
+6 击勾弦
+//! c=#00aa7f i=note-eighth g=1 o=note:30,127
+60 滑棒
+
+//! c=fx i=fx g=4 o=note:97,127
+7 扫弦On
+//! c=fx i=fx g=4 o=note:97,1
+8 扫弦Off
+
+//! c=short i=note-eighth g=3 o=note:31,127
+9 指定弦6
+//! c=short i=note-eighth g=3 o=note:32,127
+10 指定弦5
+//! c=short i=note-eighth g=3 o=note:33,127
+11 指定弦4
+//! c=short i=note-eighth g=3 o=note:34,127
+12 指定弦3
+//! c=short i=note-eighth g=3 o=note:35,127
+13 指定弦2
+//! c=short i=note-eighth g=3 o=note:36,127
+14 指定弦1
+
+//! c=long i=note g=2 o=note:37,1/note:40,1
+15 把位0
+//! c=long i=note g=2 o=note:37,1/note:41,1
+16 把位1
+//! c=long i=note g=2 o=note:37,1/note:42,1
+17 把位2
+//! c=long i=note g=2 o=note:37,1/note:43,1
+18 把位3
+//! c=long i=note g=2 o=note:37,1/note:44,1
+19 把位4
+//! c=long i=note g=2 o=note:37,1/note:45,1
+20 把位5
+//! c=long i=note g=2 o=note:37,1/note:46,1
+21 把位6
+//! c=long i=note g=2 o=note:37,1/note:47,1
+22 把位7
+//! c=long i=note g=2 o=note:37,1/note:48,1
+23 把位8
+//! c=long i=note g=2 o=note:37,1/note:49,1
+24 把位9
+//! c=long i=note g=2 o=note:37,1/note:50,1
+25 把位10
+//! c=long i=note g=2 o=note:37,1/note:51,1
+26 把位11
+//! c=long i=note g=2 o=note:37,1/note:52,1
+27 把位12
+//! c=long i=note g=2 o=note:37,1/note:53,1
+28 把位13
+//! c=long i=note g=2 o=note:37,1/note:54,1
+29 把位14
+//! c=long i=note g=2 o=note:37,1/note:55,1
+30 把位15
+//! c=long i=note g=2 o=note:37,1/note:56,1
+31 把位16
+//! c=long i=note g=2 o=note:37,1/note:57,1
+32 把位17
+//! c=long i=note g=2 o=note:37,1/note:58,1
+33 把位18
+
+//! c=long i=note g=2 o=note:37,1/note:40,1
+15 把位0
+//! c=long i=note g=2 o=note:37,1/note:41,1
+16 把位1
+//! c=long i=note g=2 o=note:37,1/note:42,1
+17 把位2
+//! c=long i=note g=2 o=note:37,1/note:43,1
+18 把位3
+//! c=long i=note g=2 o=note:37,1/note:44,1
+19 把位4
+//! c=long i=note g=2 o=note:37,1/note:45,1
+20 把位5
+//! c=long i=note g=2 o=note:37,1/note:46,1
+21 把位6
+//! c=long i=note g=2 o=note:37,1/note:47,1
+22 把位7
+//! c=long i=note g=2 o=note:37,1/note:48,1
+23 把位8
+//! c=long i=note g=2 o=note:37,1/note:49,1
+24 把位9
+//! c=long i=note g=2 o=note:37,1/note:50,1
+25 把位10
+//! c=long i=note g=2 o=note:37,1/note:51,1
+26 把位11
+//! c=long i=note g=2 o=note:37,1/note:52,1
+27 把位12
+//! c=long i=note g=2 o=note:37,1/note:53,1
+28 把位13
+//! c=long i=note g=2 o=note:37,1/note:54,1
+29 把位14
+//! c=long i=note g=2 o=note:37,1/note:55,1
+30 把位15
+//! c=long i=note g=2 o=note:37,1/note:56,1
+31 把位16
+//! c=long i=note g=2 o=note:37,1/note:57,1
+32 把位17
+//! c=long i=note g=2 o=note:37,1/note:58,1
+33 把位18
+//! c=long i=note g=2 o=note:37,1/note:59,1
+34 把位19
+//! c=long i=note g=2 o=note:37,1/note:60,1
+35 把位20
+
+//----------------------------------------------------------------------------
+//! g="Ample Sound" n="AGLP"
+Bank 0 19 AGLP
+
+//! c=#00aa7f i=note-eighth g=1 o=note:24,127
+1 标准音与重勾
+//! c=#00aa7f i=note-eighth g=1 o=note:25,127
+2 自然泛音
+//! c=#00aa7f i=note-eighth g=1 o=note:26,127
+3 手掌闷音
+//! c=#00aa7f i=note-eighth g=1 o=note:27,127
+4 无头与无尾滑音
+//! c=#00aa7f i=note-eighth g=1 o=note:28,127
+5 连奏滑音
+//! c=#00aa7f i=note-eighth g=1 o=note:29,127
+6 击勾弦
+//! c=#00aa7f i=note-eighth g=1 o=note:30,127
+60 滑棒
+
+//! c=fx i=fx g=4 o=note:97,127
+7 扫弦On
+//! c=fx i=fx g=4 o=note:97,1
+8 扫弦Off
+
+//! c=short i=note-eighth g=3 o=note:31,127
+9 指定弦6
+//! c=short i=note-eighth g=3 o=note:32,127
+10 指定弦5
+//! c=short i=note-eighth g=3 o=note:33,127
+11 指定弦4
+//! c=short i=note-eighth g=3 o=note:34,127
+12 指定弦3
+//! c=short i=note-eighth g=3 o=note:35,127
+13 指定弦2
+//! c=short i=note-eighth g=3 o=note:36,127
+14 指定弦1
+
+//! c=long i=note g=2 o=note:37,1/note:40,1
+15 把位0
+//! c=long i=note g=2 o=note:37,1/note:41,1
+16 把位1
+//! c=long i=note g=2 o=note:37,1/note:42,1
+17 把位2
+//! c=long i=note g=2 o=note:37,1/note:43,1
+18 把位3
+//! c=long i=note g=2 o=note:37,1/note:44,1
+19 把位4
+//! c=long i=note g=2 o=note:37,1/note:45,1
+20 把位5
+//! c=long i=note g=2 o=note:37,1/note:46,1
+21 把位6
+//! c=long i=note g=2 o=note:37,1/note:47,1
+22 把位7
+//! c=long i=note g=2 o=note:37,1/note:48,1
+23 把位8
+//! c=long i=note g=2 o=note:37,1/note:49,1
+24 把位9
+//! c=long i=note g=2 o=note:37,1/note:50,1
+25 把位10
+//! c=long i=note g=2 o=note:37,1/note:51,1
+26 把位11
+//! c=long i=note g=2 o=note:37,1/note:52,1
+27 把位12
+//! c=long i=note g=2 o=note:37,1/note:53,1
+28 把位13
+//! c=long i=note g=2 o=note:37,1/note:54,1
+29 把位14
+//! c=long i=note g=2 o=note:37,1/note:55,1
+30 把位15
+//! c=long i=note g=2 o=note:37,1/note:56,1
+31 把位16
+//! c=long i=note g=2 o=note:37,1/note:57,1
+32 把位17
+//! c=long i=note g=2 o=note:37,1/note:58,1
+33 把位18
+
+//! c=long i=note g=2 o=note:37,1/note:40,1
+15 把位0
+//! c=long i=note g=2 o=note:37,1/note:41,1
+16 把位1
+//! c=long i=note g=2 o=note:37,1/note:42,1
+17 把位2
+//! c=long i=note g=2 o=note:37,1/note:43,1
+18 把位3
+//! c=long i=note g=2 o=note:37,1/note:44,1
+19 把位4
+//! c=long i=note g=2 o=note:37,1/note:45,1
+20 把位5
+//! c=long i=note g=2 o=note:37,1/note:46,1
+21 把位6
+//! c=long i=note g=2 o=note:37,1/note:47,1
+22 把位7
+//! c=long i=note g=2 o=note:37,1/note:48,1
+23 把位8
+//! c=long i=note g=2 o=note:37,1/note:49,1
+24 把位9
+//! c=long i=note g=2 o=note:37,1/note:50,1
+25 把位10
+//! c=long i=note g=2 o=note:37,1/note:51,1
+26 把位11
+//! c=long i=note g=2 o=note:37,1/note:52,1
+27 把位12
+//! c=long i=note g=2 o=note:37,1/note:53,1
+28 把位13
+//! c=long i=note g=2 o=note:37,1/note:54,1
+29 把位14
+//! c=long i=note g=2 o=note:37,1/note:55,1
+30 把位15
+//! c=long i=note g=2 o=note:37,1/note:56,1
+31 把位16
+//! c=long i=note g=2 o=note:37,1/note:57,1
+32 把位17
+//! c=long i=note g=2 o=note:37,1/note:58,1
+33 把位18
+
+
+//----------------------------------------------------------------------------
+//! g="Ample Sound" n="AGSC"
+Bank 0 20 AGSC
+
+//! c=#00aa7f i=note-eighth g=1 o=note:24,127
+1 标准音与重勾
+//! c=#00aa7f i=note-eighth g=1 o=note:25,127
+2 自然泛音
+//! c=#00aa7f i=note-eighth g=1 o=note:26,127
+3 手掌闷音
+//! c=#00aa7f i=note-eighth g=1 o=note:27,127
+4 无头与无尾滑音
+//! c=#00aa7f i=note-eighth g=1 o=note:28,127
+5 连奏滑音
+//! c=#00aa7f i=note-eighth g=1 o=note:29,127
+6 击勾弦
+//! c=#00aa7f i=note-eighth g=1 o=note:30,127
+60 滑棒
+
+//! c=fx i=fx g=4 o=note:97,127
+7 扫弦On
+//! c=fx i=fx g=4 o=note:97,1
+8 扫弦Off
+
+//! c=short i=note-eighth g=3 o=note:31,127
+9 指定弦6
+//! c=short i=note-eighth g=3 o=note:32,127
+10 指定弦5
+//! c=short i=note-eighth g=3 o=note:33,127
+11 指定弦4
+//! c=short i=note-eighth g=3 o=note:34,127
+12 指定弦3
+//! c=short i=note-eighth g=3 o=note:35,127
+13 指定弦2
+//! c=short i=note-eighth g=3 o=note:36,127
+14 指定弦1
+
+//! c=long i=note g=2 o=note:37,1/note:40,1
+15 把位0
+//! c=long i=note g=2 o=note:37,1/note:41,1
+16 把位1
+//! c=long i=note g=2 o=note:37,1/note:42,1
+17 把位2
+//! c=long i=note g=2 o=note:37,1/note:43,1
+18 把位3
+//! c=long i=note g=2 o=note:37,1/note:44,1
+19 把位4
+//! c=long i=note g=2 o=note:37,1/note:45,1
+20 把位5
+//! c=long i=note g=2 o=note:37,1/note:46,1
+21 把位6
+//! c=long i=note g=2 o=note:37,1/note:47,1
+22 把位7
+//! c=long i=note g=2 o=note:37,1/note:48,1
+23 把位8
+//! c=long i=note g=2 o=note:37,1/note:49,1
+24 把位9
+//! c=long i=note g=2 o=note:37,1/note:50,1
+25 把位10
+//! c=long i=note g=2 o=note:37,1/note:51,1
+26 把位11
+//! c=long i=note g=2 o=note:37,1/note:52,1
+27 把位12
+//! c=long i=note g=2 o=note:37,1/note:53,1
+28 把位13
+//! c=long i=note g=2 o=note:37,1/note:54,1
+29 把位14
+//! c=long i=note g=2 o=note:37,1/note:55,1
+30 把位15
+//! c=long i=note g=2 o=note:37,1/note:56,1
+31 把位16
+//! c=long i=note g=2 o=note:37,1/note:57,1
+32 把位17
+//! c=long i=note g=2 o=note:37,1/note:58,1
+33 把位18
+
+//! c=long i=note g=2 o=note:37,1/note:40,1
+15 把位0
+//! c=long i=note g=2 o=note:37,1/note:41,1
+16 把位1
+//! c=long i=note g=2 o=note:37,1/note:42,1
+17 把位2
+//! c=long i=note g=2 o=note:37,1/note:43,1
+18 把位3
+//! c=long i=note g=2 o=note:37,1/note:44,1
+19 把位4
+//! c=long i=note g=2 o=note:37,1/note:45,1
+20 把位5
+//! c=long i=note g=2 o=note:37,1/note:46,1
+21 把位6
+//! c=long i=note g=2 o=note:37,1/note:47,1
+22 把位7
+//! c=long i=note g=2 o=note:37,1/note:48,1
+23 把位8
+//! c=long i=note g=2 o=note:37,1/note:49,1
+24 把位9
+//! c=long i=note g=2 o=note:37,1/note:50,1
+25 把位10
+//! c=long i=note g=2 o=note:37,1/note:51,1
+26 把位11
+//! c=long i=note g=2 o=note:37,1/note:52,1
+27 把位12
+//! c=long i=note g=2 o=note:37,1/note:53,1
+28 把位13
+//! c=long i=note g=2 o=note:37,1/note:54,1
+29 把位14
+//! c=long i=note g=2 o=note:37,1/note:55,1
+30 把位15
+//! c=long i=note g=2 o=note:37,1/note:56,1
+31 把位16
+//! c=long i=note g=2 o=note:37,1/note:57,1
+32 把位17
+//! c=long i=note g=2 o=note:37,1/note:58,1
+33 把位18
