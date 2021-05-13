@@ -201,8 +201,10 @@ num_group = -1
 num_start = 0
 while num_start < 128:
     for note in ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']:
-        g_note_num[f'{note}{str(num_group)}'] = str(num_start)
+        g_note_num[f'{num_start} {note}{str(num_group)}'] = str(num_start)
         num_start += 1
+        if num_start >= 128:
+            break
     num_group += 1
 
 
@@ -1043,7 +1045,7 @@ class ReaticulateEditor(QWidget):
         chs = ['all'] + [str(x) for x in range(1, 17)]
         comb_ch.addItems(chs)
         comb_ch.setCurrentIndex(chs.index(ch) if ch in chs else 0)
-        comb_ch.setFixedWidth(70)
+        comb_ch.setFixedWidth(60)
         editor_layout.addWidget(comb_ch)
 
         btn_del = QPushButton('X')
@@ -1093,10 +1095,10 @@ class ReaticulateEditor(QWidget):
 
         current_note = g_num_note[note_num]
         comb_note = QComboBox()
-        comb_note.setFixedWidth(70)
+        comb_note.setFixedWidth(80)
         notes = list(g_note_num.keys())
         comb_note.addItems(notes)
-        comb_note.setCurrentIndex(notes.index(current_note) if current_note in notes else 'C-1')
+        comb_note.setCurrentIndex(notes.index(current_note) if current_note in notes else '0 C-1')
         editor_layout.addWidget(comb_note)
 
         laber_out = QLabel()
@@ -1129,7 +1131,7 @@ class ReaticulateEditor(QWidget):
         chs = ['all'] + [str(x) for x in range(1, 17)]
         comb_ch.addItems(chs)
         comb_ch.setCurrentIndex(chs.index(ch) if ch in chs else 0)
-        comb_ch.setFixedWidth(70)
+        comb_ch.setFixedWidth(60)
         editor_layout.addWidget(comb_ch)
 
         btn_del = QPushButton('X')
@@ -1179,10 +1181,10 @@ class ReaticulateEditor(QWidget):
 
         current_note = g_num_note[note_num]
         comb_note = QComboBox()
-        comb_note.setFixedWidth(70)
+        comb_note.setFixedWidth(80)
         notes = list(g_note_num.keys())
         comb_note.addItems(notes)
-        comb_note.setCurrentIndex(notes.index(current_note) if current_note in notes else 'C-1')
+        comb_note.setCurrentIndex(notes.index(current_note) if current_note in notes else '0 C-1')
         editor_layout.addWidget(comb_note)
 
         laber_out = QLabel()
@@ -1215,7 +1217,7 @@ class ReaticulateEditor(QWidget):
         chs = ['all'] + [str(x) for x in range(1, 17)]
         comb_ch.addItems(chs)
         comb_ch.setCurrentIndex(chs.index(ch) if ch in chs else 0)
-        comb_ch.setFixedWidth(70)
+        comb_ch.setFixedWidth(60)
         editor_layout.addWidget(comb_ch)
 
         btn_del = QPushButton('X')
