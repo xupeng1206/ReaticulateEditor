@@ -1542,3 +1542,68 @@ Bank 0 22 AME
 33 把位17
 //! c=long i=note g=2 o=note:32,1/note:54,1
 34 把位18
+
+//----------------------------------------------------------------------------
+//! g="Ilya Efimov" n="Ilya Efimov Nylon Guitar"
+Bank 0 23 Ilya Efimov Nylon Guitar
+
+//! c=#00aa7f i=note-eighth g=1 o=note:31,127
+1 标准音
+//! c=#00aa7f i=note-eighth g=1 o=note-hold:30,20
+2 泛音1
+//! c=#00aa7f i=note-eighth g=1 o=note-hold:30,120
+3 泛音2
+//! c=#00aa7f i=note-eighth g=1 o=note-hold:31,64
+4 颤音
+//! c=#00aa7f i=note-eighth g=1 o=note-hold:33,127
+5 击弦
+//! c=#00aa7f i=note-eighth g=1 o=note-hold:33,20
+6 勾弦
+//! c=#00aa7f i=note-eighth g=1 o=note-hold:35,127
+7 闷音1
+//! c=#00aa7f i=note-eighth g=1 o=note-hold:35,20
+8 闷音2
+//! c=#00aa7f i=note-eighth g=1 o=note-hold:32,127
+9 上滑音-快速半音
+//! c=#00aa7f i=note-eighth g=1 o=note-hold:32,20
+10 上滑音-慢速半音
+//! c=#00aa7f i=note-eighth g=1 o=note-hold:34,127
+11 上滑音-快速全音
+//! c=#00aa7f i=note-eighth g=1 o=note-hold:34,20
+12 上滑音-慢速全音
+
+
+//! c=long i=note g=2 o=note:88,127
+34 把位1
+//! c=long i=note g=2 o=note:89,127
+35 把位2
+//! c=long i=note g=2 o=note:88,127
+36 把位3
+//! c=long i=note g=2 o=note:89,127
+37 把位4
+//! c=long i=note g=2 o=note:88,127
+38 把位5
+//! c=long i=note g=2 o=note:89,127
+39 把位6
+//! c=long i=note g=2 o=note:88,127
+40 把位7
+//! c=long i=note g=2 o=note:89,127
+41 把位8
+//! c=long i=note g=2 o=note:88,127
+42 把位9
+//! c=long i=note g=2 o=note:89,127
+43 把位10
+//! c=long i=note g=2 o=note:88,127
+44 把位11
+//! c=long i=note g=2 o=note:89,127
+45 把位12
+//! c=long i=note g=2 o=note:88,127
+46 把位13
+//! c=long i=note g=2 o=note:89,127
+47 把位14
+//! c=long i=note g=2 o=note:88,127
+48 把位15
+//! c=long i=note g=2 o=note:89,127
+49 把位16
+//! c=long i=note g=2 o=note:88,127
+50 把位17
