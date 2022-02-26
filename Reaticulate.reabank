@@ -1,13 +1,27 @@
+// Reabank file for Reaticulate - https://reaticulate.com/
+//
+// This file is a specially formatted Reabank file that is notated for use by Reaticulate.
+// Specification can be found here:
+//
+//      https://reaticulate.com/reabank.html
+//
+// You can also import user-contributed bank files for additional libraries not included
+// in the factory set:
+//
+//      https://reaticulate.com/banks
+//
+
 //----------------------------------------------------------------------------
 //! g="CSS" n="CSS-Section"
 //! m="DB no harmonics"
 //! chase=1,2,5,11,20,64-69
+//! id=11111111-9d4a-1b3b-03c7-f88777138b27
 Bank 0 1 CSS-Section
 
-//! c=legato i=legato g=1 o=note:24,1/note:34,65
-1 legato std
-//! c=legato i=legato g=1 o=note:24,127/note:34,65
-2 legato adv
+//! c=legato i=legato g=1 o=note:24,1/note:34,65/note:23,1
+1 legato std (FIX)
+//! c=legato i=legato g=1 o=note:24,127/note:34,65/note:23,1
+2 legato adv (FIX)
 //! c=legato-light i=legato g=1 o=note:28/note:34,65
 3 legato harmonics
 //! c=legato-dark i=legato-tremolo g=1 o=note:25/note:34,65
@@ -54,12 +68,13 @@ Bank 0 1 CSS-Section
 //----------------------------------------------------------------------------
 //! g="CSS" n="CSS-Full-Ensemble"
 //! chase=1,2,5,11,20,64-69
+//! id=11111111-932d-44ac-305c-69f754005b0b
 Bank 0 2 CSS-Full-Ensemble
 
-//! c=legato i=legato g=1 o=note:12,1/note:22,65
-1 legato std
-//! c=legato i=legato g=1 o=note:12,127/note:22,65
-2 legato adv
+//! c=legato i=legato g=1 o=note:12,1/note:22,65/note:11,1
+1 legato std (FIX)
+//! c=legato i=legato g=1 o=note:12,127/note:22,65/note:11,1
+2 legato adv (FIX)
 //! c=legato-light i=legato g=1 o=note:16/note:22,65
 3 legato harmonics
 //! c=legato-dark i=legato-tremolo g=1 o=note:13/note:22,65
@@ -105,6 +120,7 @@ Bank 0 2 CSS-Full-Ensemble
 
 //----------------------------------------------------------------------------
 //! g="Ample Sound" n="ABA"
+//! id=11111111-176b-77cf-34a6-007cd68b788d
 Bank 0 3 ABA
 
 //! c=#00aa7f i=note-eighth g=1 o=note:24,127
@@ -171,6 +187,7 @@ Bank 0 3 ABA
 
 //----------------------------------------------------------------------------
 //! g="Ample Sound" n="ABJ"
+//! id=11111111-f967-addf-256c-75b3ac8479e8
 Bank 0 4 ABJ
 
 //! c=#00aa7f i=note-eighth g=1 o=note:24,127
@@ -241,6 +258,7 @@ Bank 0 4 ABJ
 
 //----------------------------------------------------------------------------
 //! g="Ample Sound" n="ABJF"
+//! id=11111111-e9c8-3d66-d2ec-34a37b0e3036
 Bank 0 5 ABJF
 
 //! c=#00aa7f i=note-eighth g=1 o=note:24,127
@@ -310,6 +328,7 @@ Bank 0 5 ABJF
 
 //----------------------------------------------------------------------------
 //! g="Ample Sound" n="ABP"
+//! id=11111111-9998-0826-8c72-b73a9b7666bd
 Bank 0 6 ABP
 
 //! c=#00aa7f i=note-eighth g=1 o=note:24,127
@@ -383,6 +402,7 @@ Bank 0 6 ABP
 
 //----------------------------------------------------------------------------
 //! g="Ample Sound" n="ABY"
+//! id=11111111-6a55-06fb-4c31-45e639f6c876
 Bank 0 7 ABY
 
 //! c=#00aa7f i=note-eighth g=1 o=note:24,127
@@ -460,6 +480,7 @@ Bank 0 7 ABY
 
 //----------------------------------------------------------------------------
 //! g="Ample Sound" n="ABU"
+//! id=11111111-a16d-78ce-1cfe-eee9712df93c
 Bank 0 8 ABU
 
 //! c=#00aa7f i=note-eighth g=1 o=note:24,127
@@ -525,6 +546,7 @@ Bank 0 8 ABU
 
 //----------------------------------------------------------------------------
 //! g="Ample Sound" n="AEU"
+//! id=11111111-ce5a-4600-6f51-1d87a04f0743
 Bank 0 9 AEU
 
 //! c=#00aa7f i=note-eighth g=1 o=note:24,127
@@ -590,6 +612,7 @@ Bank 0 9 AEU
 
 //----------------------------------------------------------------------------
 //! g="Ample Sound" n="AGL"
+//! id=11111111-a260-3602-a0ac-9c48bf29b35e
 Bank 0 10 AGL
 
 //! c=#00aa7f i=note-eighth g=1 o=note:24,127
@@ -661,6 +684,7 @@ Bank 0 10 AGL
 
 //----------------------------------------------------------------------------
 //! g="Ample Sound" n="AGM"
+//! id=11111111-45bc-9c6c-e7b8-bd37ef5081ab
 Bank 0 11 AGM
 
 //! c=#00aa7f i=note-eighth g=1 o=note:24,127
@@ -734,6 +758,7 @@ Bank 0 11 AGM
 
 //----------------------------------------------------------------------------
 //! g="Ample Sound" n="AGT"
+//! id=11111111-dd9a-ba2c-80c6-aa1c906febea
 Bank 0 12 AGT
 
 //! c=#00aa7f i=note-eighth g=1 o=note:24,127
@@ -807,6 +832,7 @@ Bank 0 12 AGT
 
 //----------------------------------------------------------------------------
 //! g="Ample Sound" n="AGTW"
+//! id=11111111-56ce-d154-a618-2587bb1082eb
 Bank 0 13 AGTW
 
 //! c=#00aa7f i=note-eighth g=1 o=note:24,127
@@ -878,6 +904,7 @@ Bank 0 13 AGTW
 
 //----------------------------------------------------------------------------
 //! g="Ample Sound" n="AGSJ"
+//! id=11111111-eb7d-e5cb-a9dd-90825ef38a3f
 Bank 0 14 AGSJ
 
 //! c=#00aa7f i=note-eighth g=1 o=note:24,127
@@ -949,6 +976,7 @@ Bank 0 14 AGSJ
 
 //----------------------------------------------------------------------------
 //! g="Ample Sound" n="AGVC"
+//! id=11111111-ef05-d59b-c641-c42be6de13aa
 Bank 0 15 AGVC
 
 //! c=#00aa7f i=note-eighth g=1 o=note:24,127
@@ -1024,6 +1052,7 @@ Bank 0 15 AGVC
 
 //----------------------------------------------------------------------------
 //! g="Ample Sound" n="AGTC"
+//! id=11111111-ff56-0028-a78b-8e161517df5d
 Bank 0 16 AGTC
 
 //! c=#00aa7f i=note-eighth g=1 o=note:24,127
@@ -1097,6 +1126,7 @@ Bank 0 16 AGTC
 
 //----------------------------------------------------------------------------
 //! g="Ample Sound" n="AGSH"
+//! id=11111111-9cc3-04c9-795d-e8ff32c7ecc9
 Bank 0 17 AGSH
 
 //! c=#00aa7f i=note-eighth g=1 o=note:24,127
@@ -1172,6 +1202,7 @@ Bank 0 17 AGSH
 
 //----------------------------------------------------------------------------
 //! g="Ample Sound" n="AGPF"
+//! id=11111111-67ca-684e-506d-b8caee12f99b
 Bank 0 18 AGPF
 
 //! c=#00aa7f i=note-eighth g=1 o=note:24,127
@@ -1253,6 +1284,7 @@ Bank 0 18 AGPF
 
 //----------------------------------------------------------------------------
 //! g="Ample Sound" n="AGLP"
+//! id=11111111-6dfd-ec73-f6b9-a9102645d62d
 Bank 0 19 AGLP
 
 //! c=#00aa7f i=note-eighth g=1 o=note:24,127
@@ -1330,6 +1362,7 @@ Bank 0 19 AGLP
 
 //----------------------------------------------------------------------------
 //! g="Ample Sound" n="AGSC"
+//! id=11111111-4a43-91ba-4f9d-04b3e2e182b6
 Bank 0 20 AGSC
 
 //! c=#00aa7f i=note-eighth g=1 o=note:24,127
@@ -1407,6 +1440,7 @@ Bank 0 20 AGSC
 
 //----------------------------------------------------------------------------
 //! g="Ample Sound" n="AMR"
+//! id=11111111-f924-59e8-55e5-730131d86adc
 Bank 0 21 AMR
 
 //! c=#00aa7f i=note-eighth g=1 o=note:24,127
@@ -1474,6 +1508,7 @@ Bank 0 21 AMR
 
 //----------------------------------------------------------------------------
 //! g="Ample Sound" n="AME"
+//! id=11111111-53c7-1d37-2e0d-2b6e817e6dd7
 Bank 0 22 AME
 
 //! c=#00aa7f i=note-eighth g=1 o=note:24,127
@@ -1545,6 +1580,7 @@ Bank 0 22 AME
 
 //----------------------------------------------------------------------------
 //! g="Ilya Efimov" n="Ilya Efimov Nylon Guitar"
+//! id=11111111-06cd-3a1f-3a4f-444762ca33a5
 Bank 0 23 Ilya Efimov Nylon Guitar
 
 //! c=#00aa7f i=note-eighth g=1 o=note:31,127
